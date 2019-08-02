@@ -255,11 +255,11 @@ SYN1
     4    8    4 	#  matched closest 
     3    4   27 	
     3    6  127 	#  non-standard matched closest 
-    1    3  221 	#  non-standard matched closest 
-    3   80   64 	#  non-standard matched closest 
+    1    3   21 	#  non-standard matched closest 
+    3   80   27 	#  non-standard matched closest 
     1    2    2 	
-   80   81    6 	
-   80   82   14 	#  matched closest 
+   80   81    5 	
+   80   82   10 	#  matched closest 
 # bond angles
 # NBA
   153
