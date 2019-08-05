@@ -174,61 +174,61 @@ SYN1
 #  NB
    86
 #  IB   JB   MCB
-   43   74   39 	#  matched closest 
+   43   74    3 	#  matched closest 
    42   43   15 	
    43   44   15 	
-   42   73   39 	#  matched closest 
+   42   73    3 	#  matched closest 
    41   42   15 	
    41   72    3 	
    23   41   15 	
    23   25   15 	
-   14   23   17 	#  matched closest 
+   14   23   15 	#  matched closest 
    25   54    3 	
    25   44   15 	
-   44   75   39 	#  matched closest 
-   14   40   15 	#  matched closest 
+   44   75    3 	#  matched closest 
+   14   40   14 	#  matched closest 
    21   40   15 	
    40   45   15 	
    21   53    3 	
    19   21   15 	
-   19   52   39 	#  matched closest 
-   19   39   17 	#  matched closest 
-   39   46   17 	#  matched closest 
-   38   39   58 	#  non-standard matched closest 
-   46   77   39 	#  matched closest 
+   19   52    3 	#  matched closest 
+   19   39   56 	#  matched closest 
+   39   46   56 	#  matched closest 
+   38   39   22 	#  non-standard matched closest 
+   46   77    3 	#  matched closest 
    45   46   15 	
    45   76    3 	
-   22   38   13 	#  matched closest 
-   27   38   73 	#  non-standard matched closest 
-   16   22   45 	#  matched closest 
-   16   28   56 	#  non-standard matched closest 
+   22   38    9 	#  matched closest 
+   27   38   20 	#  non-standard matched closest 
+   16   22   13 	#  matched closest 
+   16   28   13 	#  non-standard matched closest 
    16   29   58 	#  non-standard matched closest 
-   24   28   13 	#  matched closest 
-   27   28   73 	#  non-standard matched closest 
-   24   47   45 	#  matched closest 
-   47   78  104 	#  non-standard matched closest 
-   10   47   13 	#  matched closest 
-   10   26   14 	#  matched closest 
-   26   27   18 	#  matched closest 
-   13   26   14 	#  matched closest 
-   13   55    2 	
-   13   56    2 	
-   29   57  146 	#  non-standard matched closest 
+   24   28   11 	#  matched closest 
+   27   28   56 	#  non-standard matched closest 
+   24   47    9 	#  matched closest 
+   47   78    3 	#  non-standard matched closest 
+   10   47   11 	#  matched closest 
+   10   26   11 	#  matched closest 
+   26   27   97 	#  matched closest 
+   13   26   45 	#  matched closest 
+   13   55   55 	
+   13   56   55 	
+   29   57    3 	#  non-standard matched closest 
    29   30   64 	#  non-standard matched closest 
    29   37   27 	
-   30   58  146 	#  non-standard matched closest 
-   30   59  146 	#  non-standard matched closest 
-   18   30   73 	#  non-standard matched closest 
-   18   35   73 	#  non-standard matched closest 
+   30   58    3 	#  non-standard matched closest 
+   30   59    3 	#  non-standard matched closest 
+   18   30   21 	#  non-standard matched closest 
+   18   35   21 	#  non-standard matched closest 
    18   31   13 	#  matched closest 
-   35   66  146 	#  non-standard matched closest 
-   35   67    4 	#  matched closest 
+   35   66    3 	#  non-standard matched closest 
+   35   67    3 	#  matched closest 
    35   36   27 	
-   36   68    4 	#  matched closest 
-   36   69    4 	#  matched closest 
-   36   37   26 	
-   37   70    4 	#  matched closest 
-   37   71    4 	#  matched closest 
+   36   68    3 	#  matched closest 
+   36   69    3 	#  matched closest 
+   36   37   27 	
+   37   70    3 	#  matched closest 
+   37   71    3 	#  matched closest 
    11   31    5 	
    31   32   64 	
    32   79    3 	#  non-standard matched closest 
