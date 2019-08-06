@@ -282,9 +282,9 @@ SYN1
    25   44   43   27 	
    43   44   75   25 	
    25   44   75   25 	
-   23   14   40   22 	#  matched closest 
-   14   40   21   19 	
-   14   40   45   19 	
+   23   14   40   30 	#  matched closest 
+   14   40   21   22 	
+   14   40   45   22 	
    21   40   45   27 	
    40   21   53   25 	
    19   21   40   27 	
@@ -301,63 +301,63 @@ SYN1
    40   45   46   27 	
    40   45   76   25 	
    46   45   76   25 	
-   22   38   39   37 	
-   27   38   39   37 	
+   22   38   39   27 	
+   27   38   39   39 	
    22   38   27   13 	
-   16   22   38   56 	#  non-standard matched closest 
-   22   16   28   15 	#  matched closest 
-   22   16   29   33 	#  matched closest 
+   16   22   38   63 	#  non-standard matched closest 
+   22   16   28   44 	#  matched closest 
+   22   16   29   30 	#  matched closest 
    28   16   29   33 	
-   16   28   24   62 	#  non-standard matched closest 
+   16   28   24   98 	#  non-standard matched closest 
    16   28   27    7 	
    24   28   27   37 	
    28   24   47   21 	
    24   47   78   25 	
    10   47   24   62 	#  non-standard matched closest 
-   10   47   78   17 	#  matched closest 
+   10   47   78   25 	#  matched closest 
    26   10   47   22 	
    10   26   27   27 	
    10   26   13   27 	
-   13   26   27   27 	
+   13   26   27   37 	
    28   27   38   13 	
-   26   27   38  106 	#  non-standard matched closest 
-   26   27   28   27 	
+   26   27   38  129 	#  non-standard matched closest 
+   26   27   28   15 	
    26   13   55   23 	
    26   13   56   23 	
    55   13   56   24 	
    16   29   57   57 	#  non-standard matched closest 
    16   29   30   15 	
-   16   29   37   19 	
+   16   29   37   15 	
    30   29   57   47 	#  matched closest 
-   37   29   57   56 	#  non-standard matched closest 
-   30   29   37   13 	
+   37   29   57   102 	#  non-standard matched closest 
+   30   29   37   15 	
    29   30   58    8 	#  matched closest 
-   29   30   59    8 	#  matched closest 
+   29   30   59   15 	#  matched closest 
    18   30   29   15 	
-   58   30   59   47 	#  matched closest 
-   18   30   58   43 	#  matched closest 
-   18   30   59   14 	#  matched closest 
+   58   30   59   56 	#  matched closest 
+   18   30   58   47 	#  matched closest 
+   18   30   59   47 	#  matched closest 
    30   18   35   21 	
    30   18   31   27 	
    31   18   35   33 	
-   18   35   66   46 	#  matched closest 
-   18   35   67   15 	#  matched closest 
-   18   35   36   19 	
+   18   35   66   47 	#  matched closest 
+   18   35   67  102 	#  matched closest 
+   18   35   36   15 	
    66   35   67   43 	#  matched closest 
-   36   35   66   47 	#  matched closest 
-   36   35   67    8 	#  matched closest 
-   35   36   68   47 	#  matched closest 
-   35   36   69  102 	#  non-standard matched closest 
+   36   35   66   51 	#  matched closest 
+   36   35   67  102 	#  matched closest 
+   35   36   68   56 	#  matched closest 
+   35   36   69   47 	#  non-standard matched closest 
    35   36   37   15 	
-   68   36   69   49 	#  matched closest 
-   37   36   68   14 	#  matched closest 
+   68   36   69   63 	#  matched closest 
+   37   36   68   51 	#  matched closest 
    37   36   69  102 	#  non-standard matched closest 
-   29   37   36   13 	
+   29   37   36   15 	
    29   37   70  102 	#  non-standard matched closest 
-   29   37   71  102 	#  non-standard matched closest 
-   36   37   70   14 	#  matched closest 
-   36   37   71    8 	#  matched closest 
-   70   37   71   49 	#  matched closest 
+   29   37   71   14 	#  non-standard matched closest 
+   36   37   70  102 	#  matched closest 
+   36   37   71   15 	#  matched closest 
+   70   37   71   63 	#  matched closest 
    11   31   18   33 	
    18   31   32   27 	
    11   31   32   27 	
