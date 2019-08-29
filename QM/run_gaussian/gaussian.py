@@ -9,10 +9,10 @@ Though recognition of my effort is appreciated! XD
 import sys
 import os
 from os.path import isdir
-from run_gaussian.settings import theory_lvl_list, keyword_dict, DATA_PATH
+from QM.run_gaussian.settings import theory_lvl_list, keyword_dict, DATA_PATH
 
 NCPUS, SOFTWARE, VERSION, CLUSTER = int(8), 'g16', 'b01', 'Raijin'  # Unlikely to change
-WALLTIME, VMEM, JOBFS = '12:00:00', int(70000), int(3000)  # Common variables
+WALLTIME, VMEM, JOBFS = '12:00:00', int(70000), int(100000)  # Common variables
 MEM, CHARGE, SPIN = VMEM, int(0), int(1)
 METHOD, BASIS_SET, CALC_TYPE, FREQ, SCRF = 'M062X', '6-31+G(d)', ' opt', ' freq=noraman', ' scrf=(cpcm,solvent=water)'
 
@@ -25,7 +25,7 @@ def gen_from_dir(input_dir, run_calc_type, cluster=CLUSTER, combination=None, so
         conformers = [g for g in os.listdir(group_dir) if isdir('{0}/{1}'.format(group_dir, g))]  # and 'TR' not in g
         for j, title in enumerate(conformers):
             conformer_dir = '{0}/{1}'.format(group_dir, title)
-            edit_charge = True if run_calc_type == 'FBRGO' or run_calc_type == 'TSGOVF' or 'TS' in title or '-' in title else False
+            edit_charge = True if run_calc_type == 'FBRGO' or run_calc_type == 'TSGOVF' or 'TS' in title or 'TI' in title or '-' in title else False
             SCRF = ' scrf=(cpcm,solvent={0})'.format(solvent)
             gauss_inp_geom_opt(title, conformer_dir, keyword_dict[run_calc_type]['mem'], NCPUS, combination, keyword_dict[run_calc_type]['freq'],
                                SCRF, keyword_dict[run_calc_type]['type'], CHARGE, SPIN, edit_charge)
@@ -41,7 +41,7 @@ def gauss_inp_geom_opt(title, dirc, mem=MEM, ncpus=NCPUS, combination='{0}/{1}'.
         f.write('\n\n{0}\n\n{1} {2}\n'.format(title, charge, spin))
         with open('{0}/{1}.xyz'.format(dirc, title), 'r') as g:
             line_list = g.readlines()
-            has_energy_name = 'Energy' in line_list[1] or 'w' in line_list[1] or 'Name' in line_list[1]  # Potential bug-breeding spots
+            has_energy_name = 'Energy' in line_list[1] or 'TI' in line_list[1] or 'Name' in line_list[1]  # Potential bug-breeding spots
             has_path = ':' in line_list[1]
             for i, line in enumerate(line_list):
                 if has_energy_name and i > 1:
@@ -147,15 +147,14 @@ if __name__ == "__main__":
     job_list = ['geom_opt', 'spe', 'SCS']
     job = job_list[1]
     if job == 'geom_opt':
-        input_dir = '{0}/Cross_Conjugation/Conformational_Search/alpha_santonin/Water/Reactants'.format(DATA_PATH)
+        input_dir = '{0}/QM/Conformational_Search/Intermediates'.format(DATA_PATH)
         combination = '{0}/{1}'.format(METHOD, BASIS_SET)
         gen_from_dir(input_dir, run_calc_type='GOVF', cluster='RCC', combination=combination, solvent='water')
     elif job == 'spe':
-        input_dir = '{0}/Cross_Conjugation/Single_Point_Energy'.format(DATA_PATH)
+        input_dir = '{0}/QM/Benchmarking/Extra_combinations'.format(DATA_PATH)
         for i, combination in enumerate(theory_lvl_list):
-            # theory_dir = '{0}/Combination{1}/Diethyl_ether'.format(input_dir, i + 1)
-            # theory_dir = '{0}/Combination8/Water'.format(input_dir)
-            theory_dir = '{0}/alpha_santonin/Water'.format(input_dir)
+            theory_dir = '{0}/Combination{1}/Water'.format(input_dir, i + 8)
+            # theory_dir = '{0}/alpha_santonin/Water'.format(input_dir)
             gen_from_dir(theory_dir, run_calc_type='SPEiS', cluster='RCC', combination=combination, solvent='water')
     elif job == 'SCS':
         input_dir = '{0}/QM_Calculations/Benchmarking/Combination3/Diethyl_ether'.format(DATA_PATH)

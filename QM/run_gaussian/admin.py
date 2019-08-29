@@ -9,7 +9,7 @@ Though recognition of my effort is appreciated! XD
 
 import os
 from os.path import isdir
-from run_gaussian.settings import DATA_PATH
+from QM.run_gaussian.settings import DATA_PATH
 
 
 def change_names(dir_path, new_str, old_str=None):
@@ -74,7 +74,7 @@ def split_file(file_path, break_str, ext):
 
 if __name__ == "__main__":
     operation_list = ['split', 'rename', 'group']
-    input_dir = '{0}/Cross_Conjugation/Conformational_Search/alpha_santonin/Chloroform/Products'.format(DATA_PATH)
+    input_dir = '{0}/QM/Conformational_Search/Intermediates'.format(DATA_PATH)
     dircs = [f for f in os.listdir(input_dir) if isdir('{0}/{1}'.format(input_dir, f))]  # and 'Reactant' not in f
     operation_index = 2
     for i, dirc in enumerate(dircs):

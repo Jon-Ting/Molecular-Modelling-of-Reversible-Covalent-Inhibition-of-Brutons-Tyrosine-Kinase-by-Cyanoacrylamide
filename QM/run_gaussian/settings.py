@@ -17,6 +17,7 @@ keyword_dict = {
     'FBRGO': {'type': ' opt=modredundant int(grid=ultrafine) scf=tight', 'freq': ' freq=noraman', 'edit_charge': int(-1), 'time': '18:00:00', 'mem': int(4000), 'jobfs': int(4000)},  # freeze a bond, optimize the rest
     'SBGO': {'type': ' opt=(z-matrix)'},  # stretch a bond, optimize for each point
     }
-theory_lvl_list = ['B2PLYPD/6-311G(2d,p)', 'M062X/6-311G(2d,p)', 'MP2/6-311G(2d,p)',
-                   'wB97XD/6-311G(2d,p)', 'wB97XD/AUG-cc-pVTZ', 'wB97XD/6-311G(d,p)', 'wB97XD/6-311+G(d,p)']
+# theory_lvl_list = ['B2PLYPD/6-311G(2d,p)', 'M062X/6-311G(2d,p)', 'MP2/6-311G(2d,p)',
+#                   'wB97XD/6-311G(2d,p)', 'wB97XD/AUG-cc-pVTZ', 'wB97XD/6-311G(d,p)', 'wB97XD/6-311+G(d,p)']
+theory_lvl_list = ['B2PLYPD/6-31+G(d)', 'M062X/6-311+G(d,p)', 'M062X/6-311G(d,p)', 'wB97XD/6-311+G(d,p)']
 # Correction needed for SCS-MP2 afterwards, function in gaussian.py
