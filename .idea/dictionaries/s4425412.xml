@@ -2,6 +2,7 @@
   <dictionary name="s4425412">
     <words>
       <w>awoonga</w>
+      <w>boldsymbol</w>
       <w>calcfc</w>
       <w>cpcm</w>
       <w>dirc</w>
@@ -36,6 +37,7 @@
       <w>ulimit</w>
       <w>vmem</w>
       <w>walltime</w>
+      <w>xlimit</w>
     </words>
   </dictionary>
 </component>
