@@ -21,15 +21,17 @@ SUBPLOTS_WIDTH, SUBPLOTS_HEIGHT = 10, 6
 
 if __name__ == "__main__":
 
+    dist_interest_thresh = 12
+
     # Base for elimination
     for i in [1, 2]:
         # Update DATA_PATH and reinitialise residue_dict for every replicate
         DATA_DIR = "{0}/{1}/MD/cov/Rep{2}/analysis/base".format(MD_PATH, "3", i)
-        residue_dict = {"arg": {"filename_list": [], },
-                        "glu": {"filename_list": [], },
-                        "asp": {"filename_list": [], },
-                        "his": {"filename_list": [], },
-                        "lys": {"filename_list": [], }}
+        residue_dict = {"arg": {"filename_list": [], "interest_list": []},
+                        "glu": {"filename_list": [], "interest_list": []},
+                        "asp": {"filename_list": [], "interest_list": []},
+                        "his": {"filename_list": [], "interest_list": []},
+                        "lys": {"filename_list": [], "interest_list": []}}
         # Sort out all .dat files
         for j, filename in enumerate(os.listdir(DATA_DIR)):
             # Filter out files that are not .dat files
@@ -39,6 +41,14 @@ if __name__ == "__main__":
             for k, residue in enumerate(residue_dict.keys()):
                 if residue in filename:
                     residue_dict[residue]["filename_list"].append(filename)
+                else:
+                    raise Exception("Residue not found!")
+            with open(filename, "r+") as dist_data:
+                for l, distance in enumerate(dist_data.readlines()):
+                    if float(distance) <= dist_interest_thresh:
+                        residue_dict[residue]["interest_list"].append(filename)
+                        continue
+
         # Analyse each residue
         for j, residue in enumerate(residue_dict.keys()):
             combined_df = pd.DataFrame(list(range(0, 20001, 1)), columns=["Time (ps)"])  # Create empty dataframe
