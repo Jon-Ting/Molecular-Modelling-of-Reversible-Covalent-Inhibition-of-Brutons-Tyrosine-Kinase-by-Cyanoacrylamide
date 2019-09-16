@@ -57,8 +57,8 @@ def find_val(line_list, target_str):
 
 
 if __name__ == "__main__":
-    class_type = 'Intermediates'
-    input_dir = '{0}/QM/Conformational_Search/{1}'.format(DATA_PATH, class_type)
+    class_type = 'Second_Products'
+    input_dir = '{0}/Cross_Conjugation/Conformational_Search/mystery/Chloroform/{1}'.format(DATA_PATH, class_type)
     groups = [f for f in os.listdir(input_dir) if isdir('{0}/{1}'.format(input_dir, f)) and 'exclude' not in f]  # and 'Reactant' not in f
     print("\n# Tabulating values of interest from Gaussian .out files to an Excel sheet...")
     print("\n# Input directory:\n", input_dir, "\n\n# Groups:\n", groups, "\n")

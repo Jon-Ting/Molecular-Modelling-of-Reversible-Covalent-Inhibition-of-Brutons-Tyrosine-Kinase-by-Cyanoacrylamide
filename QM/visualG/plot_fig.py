@@ -23,12 +23,12 @@ SIX_PLOTS_WIDTH, SIX_PLOTS_HEIGHT = 10, 8
 def lin_reg(m, c, r2, xlimit, leg_loc, font_size="x-small"):
     x = np.linspace(xlimit[0], xlimit[1], 2)
     y = m * x + c
-    plt.plot(x, y, '--r', label="$y = {0}x + {1}$\n\t$R^2 = {2}$".format(m, c, r2))
+    plt.plot(x, y, '--r', label="$y = {0:.1f}x + {1:.1f}$\n$R^2 = {2:.2f}$".format(m, c, r2))
     plt.legend(loc=leg_loc, fontsize=font_size)
 
 
 if __name__ == "__main__":
-    csv_file = "{0}/QM/Conformational_Analysis/Most_stable/Properties_Correlation.csv".format(DATA_PATH)
+    csv_file = "{0}/QM/Conformational_Analysis/Most_stable_conformers/CombinationI_Properties_Correlation.csv".format(DATA_PATH)
     df = pd.read_csv(csv_file, index_col=0)
     print(df)
 
@@ -40,7 +40,7 @@ if __name__ == "__main__":
     for line in range(1, df.shape[0] + 1):
         ax.text(df["Ligand LUMO Energy (kcal/mol)"][line], df["Addition Barrier (kcal/mol)"][line] + 0.4,
                 df["Ligand"][line], horizontalalignment='center', size='small', color='black')
-    m, c, r2 = 0.6276, 19.017, 0.7402
+    m, c, r2 = 0.6121, 22.143, 0.8354
     lin_reg(m, c, r2, plt.xlim(), "upper left", font_size="medium")
     plt.ylim(None, None); plt.xlim(None, None)
     plt.tight_layout()
@@ -119,33 +119,33 @@ if __name__ == "__main__":
     ax1 = fig.add_subplot(2, 2, 1)
     p1 = sns.scatterplot(x="Thiolate Distortion Energy (kcal/mol)", y="Addition Barrier (kcal/mol)", data=df, hue="Ligand", legend=False, s=100)
     for line in range(1, df.shape[0] + 1):
-        ax1.text(df["Thiolate Distortion Energy (kcal/mol)"][line]-0.03, df["Addition Barrier (kcal/mol)"][line],
+        ax1.text(df["Thiolate Distortion Energy (kcal/mol)"][line]-0.02, df["Addition Barrier (kcal/mol)"][line],
                 df["Ligand"][line], horizontalalignment='right', size='small', color='black')
-    m, c, r2 = 18.279, 4.4489, 0.711
+    m, c, r2 = 17.241, 7.6018, 0.798
     lin_reg(m, c, r2, plt.xlim(), "upper left")
 
     ax2 = fig.add_subplot(2, 2, 2)
     p2 = sns.scatterplot(x="Ligand Distortion Energy (kcal/mol)", y="Addition Barrier (kcal/mol)", data=df, hue="Ligand", legend=False, s=100)
     for line in range(1, df.shape[0] + 1):
-        ax2.text(df["Ligand Distortion Energy (kcal/mol)"][line]+5, df["Addition Barrier (kcal/mol)"][line],
+        ax2.text(df["Ligand Distortion Energy (kcal/mol)"][line]-1.0, df["Addition Barrier (kcal/mol)"][line]+0.7,
                 df["Ligand"][line], horizontalalignment='left', size='small', color='black')
-    m, c, r2 = 0.0194, 8.4567, 0.0323
+    m, c, r2 = 0.8082, 5.3355, 0.9760
     lin_reg(m, c, r2, plt.xlim(), "best")
 
     ax3 = fig.add_subplot(2, 2, 3)
     p3 = sns.scatterplot(x="Activation Energy (kcal/mol)", y="Addition Barrier (kcal/mol)", data=df, hue="Ligand", legend=False, s=100)
     for line in range(1, df.shape[0] + 1):
-        ax3.text(df["Activation Energy (kcal/mol)"][line]-0.5, df["Addition Barrier (kcal/mol)"][line],
+        ax3.text(df["Activation Energy (kcal/mol)"][line]-0.3, df["Addition Barrier (kcal/mol)"][line],
                 df["Ligand"][line], horizontalalignment='right', size='small', color='black')
-    m, c, r2 = 0.9708, 5.5026, 0.9026
+    m, c, r2 = 0.9013, 10.439, 0.8943
     lin_reg(m, c, r2, plt.xlim(), "upper left")
 
     ax4 = fig.add_subplot(2, 2, 4)
     p4 = sns.scatterplot(x="Interaction Energy (kcal/mol)", y="Addition Barrier (kcal/mol)", data=df, hue="Ligand", legend=False, s=100)
     for line in range(1, df.shape[0] + 1):
-        ax4.text(df["Interaction Energy (kcal/mol)"][line]+5, df["Addition Barrier (kcal/mol)"][line],
+        ax4.text(df["Interaction Energy (kcal/mol)"][line]+0.18, df["Addition Barrier (kcal/mol)"][line],
                 df["Ligand"][line], horizontalalignment='left', size='small', color='black')
-    m, c, r2 = 0.0088, 8.7397, 0.0068
+    m, c, r2 = -1.6397, 0.1818, 0.428
     lin_reg(m, c, r2, plt.xlim(), "lower left")
 
     # plt.legend(p4, loc="center right", borderaxespad=0.1, title="Ligands")

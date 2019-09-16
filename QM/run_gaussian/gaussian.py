@@ -12,7 +12,7 @@ from os.path import isdir
 from QM.run_gaussian.settings import theory_lvl_list, keyword_dict, DATA_PATH
 
 NCPUS, SOFTWARE, VERSION, CLUSTER = int(8), 'g16', 'b01', 'Raijin'  # Unlikely to change
-WALLTIME, VMEM, JOBFS = '12:00:00', int(70000), int(100000)  # Common variables
+WALLTIME, VMEM, JOBFS = '12:00:00', int(8000), int(2400)  # Common variables
 MEM, CHARGE, SPIN = VMEM, int(0), int(1)
 METHOD, BASIS_SET, CALC_TYPE, FREQ, SCRF = 'M062X', '6-31+G(d)', ' opt', ' freq=noraman', ' scrf=(cpcm,solvent=water)'
 
@@ -23,6 +23,7 @@ def gen_from_dir(input_dir, run_calc_type, cluster=CLUSTER, combination=None, so
     for i, group in enumerate(groups):  # Potentially R, TSS, P
         group_dir = '{0}/{1}'.format(input_dir, group)  # Absolute path to the directories
         conformers = [g for g in os.listdir(group_dir) if isdir('{0}/{1}'.format(group_dir, g))]  # and 'TR' not in g
+        # print(conformers)
         for j, title in enumerate(conformers):
             conformer_dir = '{0}/{1}'.format(group_dir, title)
             edit_charge = True if run_calc_type == 'FBRGO' or run_calc_type == 'TSGOVF' or 'TS' in title or 'TI' in title or '-' in title else False
@@ -43,12 +44,15 @@ def gauss_inp_geom_opt(title, dirc, mem=MEM, ncpus=NCPUS, combination='{0}/{1}'.
             line_list = g.readlines()
             has_energy_name = 'Energy' in line_list[1] or 'TI' in line_list[1] or 'Name' in line_list[1]  # Potential bug-breeding spots
             has_path = ':' in line_list[1]
+            has_blank = '\n' in line_list[1]
             for i, line in enumerate(line_list):
                 if has_energy_name and i > 1:
                     f.write('{0}'.format(line))
                 elif has_path and i > 1:
                     f.write('\n{0}'.format(line)) if i == 2 else f.write('{0}'.format(line))
-                elif not(has_energy_name) and not(has_path) and i > 0:
+                elif has_blank and i > 1:
+                    f.write('{0}'.format(line))
+                elif not(has_energy_name) and not(has_path) and not(has_blank) and i > 0:
                     f.write('{0}'.format(line))
                 else:
                     pass
@@ -145,15 +149,16 @@ if __name__ == "__main__":
     else:
         input_dir = '{0}/QM_Calculations/Benchmarking'.format(DATA_PATH)
     job_list = ['geom_opt', 'spe', 'SCS']
-    job = job_list[1]
+    job = job_list[0]
     if job == 'geom_opt':
-        input_dir = '{0}/QM/Conformational_Search/Intermediates'.format(DATA_PATH)
+        input_dir = '{0}/Cross_Conjugation/Conformational_Search/mystery/Chloroform/Second_Products'.format(DATA_PATH)
         combination = '{0}/{1}'.format(METHOD, BASIS_SET)
-        gen_from_dir(input_dir, run_calc_type='GOVF', cluster='RCC', combination=combination, solvent='water')
+        print("Combination:", combination)
+        gen_from_dir(input_dir, run_calc_type='GOVF', cluster='RCC', combination=combination, solvent='chloroform')
     elif job == 'spe':
-        input_dir = '{0}/QM/Benchmarking/Extra_combinations'.format(DATA_PATH)
+        input_dir = '{0}/QM/Benchmarking'.format(DATA_PATH)
         for i, combination in enumerate(theory_lvl_list):
-            theory_dir = '{0}/Combination{1}/Water'.format(input_dir, i + 8)
+            theory_dir = '{0}/Combination{1}/Water'.format(input_dir, i + 1)
             # theory_dir = '{0}/alpha_santonin/Water'.format(input_dir)
             gen_from_dir(theory_dir, run_calc_type='SPEiS', cluster='RCC', combination=combination, solvent='water')
     elif job == 'SCS':
