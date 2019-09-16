@@ -27,8 +27,47 @@ def lin_reg(m, c, r2, xlimit, leg_loc, font_size="x-small"):
     plt.legend(loc=leg_loc, fontsize=font_size)
 
 
+combination_dict = {
+    "I": {
+        "LUMO": (0.6121, 22.143, 0.8354),
+        "Charge": {
+            "Mulliken": (-3.5523, 10.639, 0.2152),
+            "NBO": (-24.802, 9.7637, 0.7967),
+            "MK": (-7.1748, 11.747, 0.3866),
+            "Hirshfeld": (-89.348, 12.659, 0.8491),
+            "ChelpG": (-19.394, 9.9205, 0.6864),
+            "AIM": (-92.849, 14.411, 0.8573)
+        },
+        "DI": {
+            "Thiolate": (17.241, 7.6018, 0.798),
+            "Ligand": (0.8082, 5.3355, 0.9760),
+            "Activation": (0.9013, 10.439, 0.8943),
+            "Interaction": (-1.6397, 0.1818, 0.428),
+        }
+    },
+    "G": {
+        "LUMO": (0.6121, 22.143, 0.8354),
+        "Charge": {
+            "Mulliken": (-3.5523, 10.639, 0.2152),
+            "NBO": (-24.802, 9.7637, 0.7967),
+            "MK": (-7.1748, 11.747, 0.3866),
+            "Hirshfeld": (-89.348, 12.659, 0.8491),
+            "ChelpG": (-19.394, 9.9205, 0.6864),
+            "AIM": (-92.849, 14.411, 0.8573)
+        },
+        "DI": {
+            "Thiolate": (17.241, 7.6018, 0.798),
+            "Ligand": (0.8082, 5.3355, 0.9760),
+            "Activation": (0.9013, 10.439, 0.8943),
+            "Interaction": (-1.6397, 0.1818, 0.428),
+        }
+    }
+}
+
+
 if __name__ == "__main__":
-    csv_file = "{0}/QM/Conformational_Analysis/Most_stable_conformers/CombinationI_Properties_Correlation.csv".format(DATA_PATH)
+    combination = "CombinationI"
+    csv_file = "{0}/QM/Conformational_Analysis/Most_stable_conformers/{1}_Properties_Correlation.csv".format(DATA_PATH, combination)
     df = pd.read_csv(csv_file, index_col=0)
     print(df)
 
@@ -44,7 +83,7 @@ if __name__ == "__main__":
     lin_reg(m, c, r2, plt.xlim(), "upper left", font_size="medium")
     plt.ylim(None, None); plt.xlim(None, None)
     plt.tight_layout()
-    plt.savefig("Ligand LUMO Energy")
+    plt.savefig("{0}/Ligand LUMO Energy".format(combination))
 
     # Beta-Carbon Charges
     fig = plt.figure(figsize=(SIX_PLOTS_WIDTH, SIX_PLOTS_HEIGHT))
@@ -57,7 +96,7 @@ if __name__ == "__main__":
     for line in range(1, df.shape[0] + 1):
         ax1.text(df["Mulliken Charge (e)"][line]-0.03, df["Addition Barrier (kcal/mol)"][line],
                  df["Ligand"][line], horizontalalignment='right', size='small', color='black')
-    m, c, r2 = -9.5378, 8.4412, 0.6933
+    m, c, r2 = -3.5523, 10.639, 0.2152
     lin_reg(m, c, r2, plt.xlim(), "upper right")
 
     ax2 = fig.add_subplot(3, 2, 2)
@@ -66,7 +105,7 @@ if __name__ == "__main__":
     for line in range(1, df.shape[0] + 1):
         ax2.text(df["NBO Charge (e)"][line]-0.01, df["Addition Barrier (kcal/mol)"][line],
                  df["Ligand"][line], horizontalalignment='right', size='small', color='black')
-    m, c, r2 = -13.261, 7.3075, 0.2655
+    m, c, r2 = -24.802, 9.7637, 0.7967
     lin_reg(m, c, r2, plt.xlim(), "upper right")
 
     ax3 = fig.add_subplot(3, 2, 3)
@@ -75,16 +114,16 @@ if __name__ == "__main__":
     for line in range(1, df.shape[0] + 1):
         ax3.text(df["Merz-Kollman Charge (e)"][line]+0.01, df["Addition Barrier (kcal/mol)"][line],
                  df["Ligand"][line], horizontalalignment='left', size='small', color='black')
-    m, c, r2 = 7.8488, 4.5388, 0.1579
+    m, c, r2 = -7.1748, 11.747, 0.3866
     lin_reg(m, c, r2, plt.xlim(), "lower right")
 
     ax4 = fig.add_subplot(3, 2, 4)
-    p4 = sns.scatterplot(x="Hirshfeld CM5 Charge (e)", y="Addition Barrier (kcal/mol)", data=df, hue="Ligand",
+    p4 = sns.scatterplot(x="Hirshfeld Charge (e)", y="Addition Barrier (kcal/mol)", data=df, hue="Ligand",
                          legend=False, s=100)
     for line in range(1, df.shape[0] + 1):
-        ax4.text(df["Hirshfeld CM5 Charge (e)"][line]+0.03, df["Addition Barrier (kcal/mol)"][line],
+        ax4.text(df["Hirshfeld Charge (e)"][line]+0.03, df["Addition Barrier (kcal/mol)"][line],
                  df["Ligand"][line], horizontalalignment='left', size='small', color='black')
-    m, c, r2 = -5.7879, 9.3252, 0.4627
+    m, c, r2 = -89.348, 12.659, 0.8491
     lin_reg(m, c, r2, plt.xlim(), "upper right")
 
     ax5 = fig.add_subplot(3, 2, 5)
@@ -93,7 +132,7 @@ if __name__ == "__main__":
     for line in range(1, df.shape[0] + 1):
         ax5.text(df["ChelpG Charge (e)"][line]-0.025, df["Addition Barrier (kcal/mol)"][line],
                  df["Ligand"][line], horizontalalignment='right', size='small', color='black')
-    m, c, r2 = -20.086, 21.333, 0.3557
+    m, c, r2 = -19.394, 9.9205, 0.6864
     lin_reg(m, c, r2, plt.xlim(), "upper left")
 
     ax6 = fig.add_subplot(3, 2, 6)
@@ -102,13 +141,13 @@ if __name__ == "__main__":
     for line in range(1, df.shape[0] + 1):
         ax6.text(df["AIM Charge (e)"][line]-0.008, df["Addition Barrier (kcal/mol)"][line],
                  df["Ligand"][line], horizontalalignment='right', size='small', color='black')
-    m, c, r2 = -63.398, 10.76, 0.1817
+    m, c, r2 = -92.849, 14.411, 0.8573
     lin_reg(m, c, r2, plt.xlim(), "upper right")
 
     # plt.legend(p4, loc="center right", borderaxespad=0.1, title="Ligands")
     # plt.ylim(3, 15); plt.xlim(None, None)
     # plt.tight_layout()
-    plt.savefig("Beta-Carbon Charges")
+    plt.savefig("{0}/Beta-Carbon Charges".format(combination))
     # plt.show()
 
     # Distortion/Interaction Analysis
@@ -151,7 +190,7 @@ if __name__ == "__main__":
     # plt.legend(p4, loc="center right", borderaxespad=0.1, title="Ligands")
     plt.ylim(None, None); plt.xlim(None, None)
     # plt.tight_layout()
-    plt.savefig("Distortion-Interaction Analysis")
+    plt.savefig("{0}/Distortion-Interaction Analysis".format(combination))
     # plt.show()
 
 
