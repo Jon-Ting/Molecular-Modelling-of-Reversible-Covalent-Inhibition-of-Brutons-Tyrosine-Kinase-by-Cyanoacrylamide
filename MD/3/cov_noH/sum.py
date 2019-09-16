@@ -1,4 +1,4 @@
-total,modify = 0, 0.009
+total,modify = 0, 0.000
 with open('charges.txt', 'r') as inp, open('tot_charge.txt', 'w') as outp:
    for line in inp:
        try:
