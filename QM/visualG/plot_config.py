@@ -8,6 +8,7 @@ Though recognition of my effort is appreciated! XD
 
 
 charge_list = ["Mulliken", "NBO", "MK", "Hirshfeld", "CM5", "AIM", "ChelpG", "Omega"]
+DI_list = ["Thiolate", "Ligand", "Activation", "Interaction"]
 
 combination_dict = {
     "I": {
