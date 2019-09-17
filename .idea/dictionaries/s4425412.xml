@@ -4,9 +4,11 @@
       <w>awoonga</w>
       <w>boldsymbol</w>
       <w>calcfc</w>
+      <w>chelp</w>
       <w>cpcm</w>
       <w>dirc</w>
       <w>dircs</w>
+      <w>electrophilicity</w>
       <w>energyunits</w>
       <w>eyring</w>
       <w>fbrgo</w>
@@ -15,11 +17,13 @@
       <w>govf</w>
       <w>grevbarr</w>
       <w>gzmat</w>
+      <w>hirshfeld</w>
       <w>jobfs</w>
       <w>kcal</w>
       <w>labelcolour</w>
       <w>labeloffset</w>
       <w>linksto</w>
+      <w>mulliken</w>
       <w>ncpus</w>
       <w>noeigentest</w>
       <w>noraman</w>
@@ -33,6 +37,7 @@
       <w>solv</w>
       <w>textcolour</w>
       <w>textoffset</w>
+      <w>thiolate</w>
       <w>tsgovf</w>
       <w>ulimit</w>
       <w>vmem</w>
