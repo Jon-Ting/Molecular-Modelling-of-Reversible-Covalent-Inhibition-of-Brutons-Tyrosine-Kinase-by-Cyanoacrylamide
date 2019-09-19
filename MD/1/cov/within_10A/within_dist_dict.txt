@@ -1,0 +1,29 @@
+{
+    "arg": [
+        "dist_cysB_arg387.dat",
+        "dist_cysB_arg422.dat",
+        "dist_cysA_arg144.dat",
+        "dist_cysB_arg384.dat",
+        "dist_cysA_arg106.dat"
+    ],
+    "lys": [
+        "dist_cysA_lys49.dat",
+        "dist_cysB_lys327.dat",
+        "dist_cysB_lys455.dat",
+        "dist_cysA_lys177.dat",
+        "dist_cysB_lys303.dat"
+    ],
+    "asp": [
+        "dist_cysA_asp158.dat"
+    ],
+    "glu": [
+        "dist_cysA_glu107.dat",
+        "dist_cysA_glu208.dat",
+        "dist_cysB_glu385.dat",
+        "dist_cysB_glu304.dat"
+    ],
+    "his": [
+        "dist_cysA_his110.dat",
+        "dist_cysB_his388.dat"
+    ]
+}

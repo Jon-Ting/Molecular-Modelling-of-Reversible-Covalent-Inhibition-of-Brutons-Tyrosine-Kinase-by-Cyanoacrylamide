@@ -24,7 +24,7 @@ SUBPLOTS_WIDTH, SUBPLOTS_HEIGHT = 10, 6
 
 if __name__ == "__main__":
 
-    sort_dict, dist_thresh, inhibitor, system_type = False, "All", 3, "old_cov"
+    sort_dict, dist_thresh, inhibitor, system_type = True, 10, 3, "old_cov"
 
     # Base for elimination
     for i in [1, 2]:
@@ -38,14 +38,9 @@ if __name__ == "__main__":
             # Sorting and storing the residue data
             within_dist_dict = {"arg": [], "glu": [], "asp": [], "his": [], "lys": []}
             if not os.path.exists("{0}/residue_dict.txt".format(SYSTEM_DIR)):
-                residue_dict = {"arg": [], "glu": [], "asp": [], "his": [], "lys": []}
-                '''
-                {"arg": {"filename_list": [], },
-                 "glu": {"filename_list": [], },
-                 "asp": {"filename_list": [], },
-                 "his": {"filename_list": [], },
-                 "lys": {"filename_list": [], }}
-                '''
+                residue_dict = {"arg": [], "glu": [], "asp": [], "his": [], "lys": [], "ligand": []}
+            else:
+                residue_dict = json.load(open("{0}/residue_dict.txt".format(SYSTEM_DIR)))  # All residues
                 # Empty the .dat files
                 for j, residue in enumerate(residue_dict.keys()):
                     open("{0}/{1}_list.txt".format(SYSTEM_DIR, residue), "w").close()
@@ -61,6 +56,13 @@ if __name__ == "__main__":
                                 res_list_file.write("{0}\n".format(filename))
                                 residue_dict[residue].append(filename)
                         with open("{0}/{1}".format(DATA_DIR, filename), "r") as dist_data:
+
+                            # Create necessary directories and files if they don't exist already
+                            if not os.path.exists(STORE_DIR):
+                                os.mkdir(STORE_DIR)
+                            if not os.path.exists("{0}/close_res_list.txt".format(STORE_DIR)):
+                                open("{0}/close_res_list.txt".format(STORE_DIR), "w").close()
+
                             with open("{0}/{1}".format(STORE_DIR, "close_res_list.txt"), "a") as close_res_file:
                                 for l, line_entry in enumerate(dist_data.readlines()):
                                     distance = line_entry.split()[-1]
@@ -71,15 +73,23 @@ if __name__ == "__main__":
                                             break
                                     except (ValueError, TypeError) as error:  # If distance is NaN or dist_thresh=="All"
                                         continue
+                    elif residue == "ligand":
+                        try:
+                            resname = filename.split(".")[0].split("_")[-1].upper()
+                            int(resname)
+                        except TypeError:
+                            continue
+                    else:
+                        continue
             json.dump(within_dist_dict, open("{0}/within_dist_dict.txt".format(STORE_DIR), "w"), indent=4)
             if not os.path.exists("{0}/residue_dict.txt".format(SYSTEM_DIR)):
                 json.dump(residue_dict, open("{0}/residue_dict.txt".format(SYSTEM_DIR), "w"), indent=4)
 
         # Analyse each residue
-        # within_dist_dict = json.load(open("{0}/within_dist_dict.txt".format(STORE_DIR)))  # Residues of interest only
+        within_dist_dict = json.load(open("{0}/within_dist_dict.txt".format(STORE_DIR)))  # Residues of interest only
         residue_dict = json.load(open("{0}/residue_dict.txt".format(SYSTEM_DIR)))  # All residues
 
-        chosen_dict = residue_dict  # Choose the dictionary with right data
+        chosen_dict = within_dist_dict  # Choose the dictionary with right data
 
         for j, residue in enumerate(chosen_dict.keys()):
             label_list = []
@@ -103,7 +113,8 @@ if __name__ == "__main__":
                 for k, res_label in zip(leg.texts, label_list):
                     k.set_text(res_label)
                 '''  # Seaborn plots (unsuccessful)
-
+            if combined_df.shape[1] <= 1:  # Don't plot if only time column exists
+                continue
             plt.figure(figsize=(SINGLE_PLOT_WIDTH, SINGLE_PLOT_LEG_HEIGHT))
             combined_df.plot(x="Time (ps)", y=label_list, kind="line", ax=plt.gca(), lw=0.3, linestyle=":")
             plt.xlabel("Time (ps)")
@@ -114,4 +125,4 @@ if __name__ == "__main__":
             plt.tight_layout()
             plt.savefig(r"{0}/Distance of CaH from {1} Residues Replicate {2} within {3} A".format(STORE_DIR,
                         residue.upper(), i, dist_thresh))
-            plt.show()
+            # plt.show()

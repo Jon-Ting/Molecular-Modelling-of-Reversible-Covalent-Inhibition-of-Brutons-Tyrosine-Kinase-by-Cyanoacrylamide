@@ -1,0 +1,22 @@
+{
+    "lys": [
+        "dist_cysA_lys49.dat",
+        "dist_cysB_lys327.dat",
+        "dist_cysA_lys177.dat",
+        "dist_cysB_lys303.dat"
+    ],
+    "arg": [
+        "dist_cysB_arg422.dat",
+        "dist_cysA_arg144.dat",
+        "dist_cysB_arg384.dat",
+        "dist_cysA_arg106.dat"
+    ],
+    "glu": [
+        "dist_cysB_glu385.dat",
+        "dist_cysB_glu447.dat",
+        "dist_cysB_glu304.dat",
+        "dist_cysA_glu26.dat"
+    ],
+    "asp": [],
+    "his": []
+}
