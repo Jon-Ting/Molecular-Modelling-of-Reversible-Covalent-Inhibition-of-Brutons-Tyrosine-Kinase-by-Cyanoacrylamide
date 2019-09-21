@@ -24,7 +24,7 @@ SUBPLOTS_WIDTH, SUBPLOTS_HEIGHT = 10, 6
 
 if __name__ == "__main__":
 
-    sort_dict, dist_thresh, inhibitor, system_type = True, 10, 3, "old_cov"
+    sort_dict, dist_thresh, inhibitor, system_type = False, 10, 3, "noncov_H"
 
     # Base for elimination
     for i in [1, 2]:
@@ -74,6 +74,7 @@ if __name__ == "__main__":
                                     except (ValueError, TypeError) as error:  # If distance is NaN or dist_thresh=="All"
                                         continue
                     elif residue == "ligand":
+                        continue
                         try:
                             resname = filename.split(".")[0].split("_")[-1].upper()
                             int(resname)
