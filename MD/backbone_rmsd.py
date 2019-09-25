@@ -13,17 +13,22 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
-from Honours.MD.config import MD_PATH, SINGLE_PLOT_WIDTH, SINGLE_PLOT_LEG_HEIGHT,SINGLE_PLOT_LEG_WIDTH, \
-    SINGLE_PLOT_LEG_HEIGHT, FOUR_PLOTS_WIDTH, FOUR_PLOTS_HEIGHT, SIX_PLOTS_WIDTH, SIX_PLOTS_HEIGHT
 
 sns.set(context='paper', font_scale=1.5)
+
+MD_PATH = "/home/s4425412/data/Honours/MD"
 CURR_DIR = os.getcwd()
+SINGLE_PLOT_WIDTH, SINGLE_PLOT_HEIGHT = 9, 7
+SINGLE_PLOT_LEG_WIDTH, SINGLE_PLOT_LEG_HEIGHT = 9, 10
+FOUR_PLOTS_WIDTH, FOUR_PLOTS_HEIGHT = 10, 8
+SIX_PLOTS_WIDTH, SIX_PLOTS_HEIGHT = 10, 12
 
 
 if __name__ == "__main__":
 
-    sort_dict, dist_thresh, inhibitor, system_type, num_subplots = False, "All", 1, "noncov_H", 6
+    sort_dict, dist_thresh, inhibitor, system_type, num_subplots = False, 10, 3, "cov", 4
 
+    # Base for elimination
     for i in [1, 2]:
 
         # Update DATA_PATH and reinitialise residue_dict for every replicate
@@ -94,11 +99,10 @@ if __name__ == "__main__":
             PLOTS_WIDTH, PLOTS_HEIGHT = FOUR_PLOTS_WIDTH, FOUR_PLOTS_HEIGHT
         else:
             PLOTS_WIDTH, PLOTS_HEIGHT = SIX_PLOTS_WIDTH, SIX_PLOTS_HEIGHT
-        target_H = "CYS481" if "non" in system_type else "Ca"
         num_row, subplot_index = int(num_subplots / 2), 0
         fig, axes = plt.subplots(nrows=num_row, ncols=2, sharex=True, sharey=True, figsize=(PLOTS_WIDTH, PLOTS_HEIGHT))
-        fig.subplots_adjust(top=0.95, bottom=0.07, left=0.08, right=0.95, wspace=0.15, hspace=0.15)
-        fig.suptitle(r"Distance of Charged Residues of Interest from {0} H".format(target_H), horizontalalignment='center',
+        fig.subplots_adjust(top=0.95, bottom=0.07, left=0.08, right=0.97, wspace=0.15, hspace=0.15)
+        fig.suptitle(r"Distance of Charged Residues of Interest from C$_\alpha$ H", horizontalalignment='center',
                      fontsize=14, weight='bold')
         fig.text(0.5, 0.02, "Time (ns)", va='center', ha='center')
         fig.text(0.02, 0.5, r"Distance ($\AA$)", va='center', ha='center', rotation='vertical')
@@ -137,5 +141,5 @@ if __name__ == "__main__":
             plt.setp(leg.get_lines(), linewidth=4)
             # plt.ylim(None, None); plt.xlim(None, None)
         fig.delaxes(axes[-1][-1])
-        plt.show()
-        plt.savefig(r"{0}/Distance of {1} H from Charged Residues Rep {2} within {3} A".format(STORE_DIR, target_H, i, dist_thresh))
+        plt.savefig(r"{0}/Distance of CaH from Charged Residues Rep {1} within {2} A".format(STORE_DIR, i, dist_thresh))
+        # plt.show()
