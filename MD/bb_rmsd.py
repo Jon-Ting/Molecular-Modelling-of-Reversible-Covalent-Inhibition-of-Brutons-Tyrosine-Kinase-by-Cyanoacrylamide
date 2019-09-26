@@ -20,28 +20,28 @@ CURR_DIR = os.getcwd()
 
 if __name__ == "__main__":
 
-    system_type, num_subplots, fig_type = "noncov", 6, "Line"
+    num_subplots, fig_type = 6, "Hist"
 
     PLOTS_WIDTH, PLOTS_HEIGHT = SIX_PLOTS_WIDTH, SIX_PLOTS_HEIGHT
     num_row, subplot_index = int(num_subplots / 2), 0
     fig, axes = plt.subplots(nrows=num_row, ncols=2, sharex=True, sharey=True, figsize=(PLOTS_WIDTH, PLOTS_HEIGHT))
     if fig_type == "Line":
-        fig.subplots_adjust(top=0.95, bottom=0.06, left=0.10, right=0.97, wspace=0.25, hspace=0.15)
+        fig.subplots_adjust(top=0.95, bottom=0.06, left=0.06, right=0.97, wspace=0.15, hspace=0.15)
     elif fig_type == "Hist":
         fig.subplots_adjust(top=0.95, bottom=0.07, left=0.08, right=0.97, wspace=0.15, hspace=0.15)
-    fig.suptitle("Dihedral of C=C-C=O For All Inhibitors", horizontalalignment='center', fontsize=14, weight='bold')
+    fig.suptitle("Backbone RMSD in MD Simulations of Different Inhibitors", horizontalalignment='center', fontsize=14, weight='bold')
     fig.text(0.5, 0.02, "Time (ns)", va='center', ha='center')
     fig.text(0.02, 0.5, u"Angle (\N{DEGREE SIGN})", va='center', ha='center', rotation='vertical')
 
     for i, inhibitor in enumerate(inhibitor_list):
         combined_df = pd.DataFrame(list(np.arange(0.005, 100.005, 0.005)), columns=["Time (ns)"])
         col_label = ["Time (ns)"]
-        label_list = []
-        for j in [1, 2]:
-            DATA_DIR = "{0}/{1}/MD/{2}/Rep{3}/analysis/dih".format(MD_PATH, str(inhibitor), system_type, j)
+        label_list, run_type_list = [], ["eq", "rep1", "rep2"]
+        for j, run_type in enumerate(run_type_list):
+            DATA_DIR = "{0}/Overall_Analysis/{1}".format(MD_PATH, str(inhibitor))
             for k in ["A", "B"]:
-                dat_file = "{0}_dih{1}.dat".format(inhibitor, k)
-                dat_name = "Rep{0} {1}{2}".format(j, inhibitor, k)
+                dat_file = "{0}_{1}_{2}_rms_bb.dat".format(inhibitor, run_type, k)
+                dat_name = "{0} {1}{2}".format(run_type.capitalize(), inhibitor, k)
                 df = pd.read_csv("{0}/{1}".format(DATA_DIR, dat_file), index_col=0, delim_whitespace=True)
                 df.reset_index(drop=True, inplace=True)
                 combined_df = pd.concat([combined_df, df], axis=1, ignore_index=True)
@@ -60,5 +60,5 @@ if __name__ == "__main__":
         leg = plt.legend(loc="upper right")
         plt.setp(leg.get_lines(), linewidth=4)
         # plt.locator_params(axis='y', nbins=6)
-    plt.savefig("{0}/Dihedral of C=C-C=O For All Inhibitors {1}".format(CURR_DIR, fig_type))
+    plt.savefig("{0}/Backbone RMSD {1}".format(CURR_DIR, fig_type))
     plt.show()
