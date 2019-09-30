@@ -29,9 +29,9 @@ if __name__ == "__main__":
         fig.subplots_adjust(top=0.95, bottom=0.06, left=0.06, right=0.97, wspace=0.15, hspace=0.15)
     elif fig_type == "Hist":
         fig.subplots_adjust(top=0.95, bottom=0.07, left=0.08, right=0.97, wspace=0.15, hspace=0.15)
-    fig.suptitle("Backbone RMSD in MD Simulations of Different Inhibitors", horizontalalignment='center', fontsize=14, weight='bold')
+    fig.suptitle("Number of H-Bonds throughout MD Simulations of Different Inhibitors", horizontalalignment='center', fontsize=14, weight='bold')
     fig.text(0.5, 0.02, "Time (ns)", va='center', ha='center')
-    fig.text(0.02, 0.5, u"Angle (\N{DEGREE SIGN})", va='center', ha='center', rotation='vertical')
+    fig.text(0.02, 0.5, "Number", va='center', ha='center', rotation='vertical')
 
     for i, inhibitor in enumerate(inhibitor_list):
         combined_df = pd.DataFrame(list(np.arange(0.005, 100.005, 0.005)), columns=["Time (ns)"])
@@ -40,7 +40,7 @@ if __name__ == "__main__":
         for j, run_type in enumerate(run_type_list):
             DATA_DIR = "{0}/Overall_Analysis/{1}".format(MD_PATH, str(inhibitor))
             for k in ["A", "B"]:
-                dat_file = "{0}_{1}_{2}_rms_bb.dat".format(inhibitor, run_type, k)
+                dat_file = "{0}_nhbvtime.agr".format(run_type)
                 dat_name = "{0} {1}{2}".format(run_type.capitalize(), inhibitor, k)
                 df = pd.read_csv("{0}/{1}".format(DATA_DIR, dat_file), index_col=0, delim_whitespace=True)
                 df.reset_index(drop=True, inplace=True)
