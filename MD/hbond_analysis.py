@@ -12,7 +12,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
-from Honours.MD.config import MD_PATH, SIX_PLOTS_WIDTH, SIX_PLOTS_HEIGHT, inhibitor_list
+from MD.config import MD_PATH, SIX_PLOTS_WIDTH, SIX_PLOTS_HEIGHT, inhibitor_list
 
 sns.set(context='paper', font_scale=1.5)
 CURR_DIR = os.getcwd()
@@ -40,7 +40,7 @@ if __name__ == "__main__":
         for j, run_type in enumerate(run_type_list):
             DATA_DIR = "{0}/Overall_Analysis/{1}".format(MD_PATH, str(inhibitor))
             for k in ["A", "B"]:
-                dat_file = "{0}_nhbvtime.agr".format(run_type)
+                dat_file = "{0}_{1}_nhbvtime.dat".format(run_type, k)
                 dat_name = "{0} {1}{2}".format(run_type.capitalize(), inhibitor, k)
                 df = pd.read_csv("{0}/{1}".format(DATA_DIR, dat_file), index_col=0, delim_whitespace=True)
                 df.reset_index(drop=True, inplace=True)
