@@ -12,7 +12,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
-from MD.config import MD_PATH, SIX_PLOTS_WIDTH, SIX_PLOTS_HEIGHT, inhibitor_list
+from Honours.MD.config import MD_PATH, SIX_PLOTS_WIDTH, SIX_PLOTS_HEIGHT, inhibitor_list
 
 sns.set(context='paper', font_scale=1.5)
 CURR_DIR = os.getcwd()
@@ -20,15 +20,15 @@ CURR_DIR = os.getcwd()
 
 if __name__ == "__main__":
 
-    num_subplots, fig_type = 6, "Hist"
+    num_subplots, fig_type = 6, "Line"
 
     PLOTS_WIDTH, PLOTS_HEIGHT = SIX_PLOTS_WIDTH, SIX_PLOTS_HEIGHT
     num_row, subplot_index = int(num_subplots / 2), 0
     fig, axes = plt.subplots(nrows=num_row, ncols=2, sharex=True, sharey=True, figsize=(PLOTS_WIDTH, PLOTS_HEIGHT))
     if fig_type == "Line":
-        fig.subplots_adjust(top=0.95, bottom=0.06, left=0.06, right=0.97, wspace=0.15, hspace=0.15)
+        fig.subplots_adjust(top=0.95, bottom=0.06, left=0.08, right=0.97, wspace=0.15, hspace=0.15)
     elif fig_type == "Hist":
-        fig.subplots_adjust(top=0.95, bottom=0.07, left=0.08, right=0.97, wspace=0.15, hspace=0.15)
+        fig.subplots_adjust(top=0.95, bottom=0.07, left=0.09, right=0.97, wspace=0.15, hspace=0.15)
     fig.suptitle("Number of H-Bonds throughout MD Simulations of Different Inhibitors", horizontalalignment='center', fontsize=14, weight='bold')
     fig.text(0.5, 0.02, "Time (ns)", va='center', ha='center')
     fig.text(0.02, 0.5, "Number", va='center', ha='center', rotation='vertical')
@@ -51,7 +51,7 @@ if __name__ == "__main__":
         subplot_index += 1
         ax1 = plt.subplot(int("{0}2{1}".format(num_row, subplot_index)))
         if fig_type == "Line":
-            combined_df.plot(x="Time (ns)", y=label_list, kind="line", ax=plt.gca(), lw=0.3, linestyle=":")
+            combined_df.plot(x="Time (ns)", y=label_list, kind="line", ax=plt.gca(), lw=0.1, linestyle=":")
             ax1.xaxis.label.set_visible(False)
         elif fig_type == "Hist":
             combined_df.plot.kde(x="Time (ns)", y=label_list, bw_method=0.5, ax=plt.gca())
@@ -60,5 +60,5 @@ if __name__ == "__main__":
         leg = plt.legend(loc="upper right")
         plt.setp(leg.get_lines(), linewidth=4)
         # plt.locator_params(axis='y', nbins=6)
-    plt.savefig("{0}/Backbone RMSD {1}".format(CURR_DIR, fig_type))
+    plt.savefig("{0}/Number of H Bonds {1}".format(CURR_DIR, fig_type))
     plt.show()
