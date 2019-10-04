@@ -30,26 +30,26 @@ def replaceMultiple(main_str, toBeReplaced, new_str):
 def find_val(line_list, target_str):
     val, isEnergy, isMethod = None, 'Energies' in target_str[0] or 'Enthalpies' in target_str[0], '%chk' in target_str[0]
     for i, string in enumerate(target_str):
-            for j, line in enumerate(line_list):
-                if string in line:
-                    if isMethod:
-                        value_inc = line_list[j - 2]
-                        val = value_inc.split(' ')[2]; break
+        for j, line in enumerate(line_list):
+            if string in line:
+                if isMethod:
+                    value_inc = line_list[j - 2]
+                    val = value_inc.split(' ')[2]; break
+                else:
+                    value_inc = line.split(string)[-1].strip()
+                    if isEnergy:
+                        val = float(value_inc.split('=')[-1].strip().replace(' ', '')); break
                     else:
-                        value_inc = line.split(string)[-1].strip()
-                        if isEnergy:
-                            val = float(value_inc.split('=')[-1].strip().replace(' ', '')); break
+                        if '\\' in value_inc:
+                            val = value_inc.split('\\')[0].split('=')[-1]
                         else:
-                            if '\\' in value_inc:
-                                val = value_inc.split('\\')[0].split('=')[-1]
-                            else:
-                                val = value_inc + line_list[j - 1].split('\\')[0]
-                                val = val.split('=')[-1]
-                            try:
-                                val = val.replace(' ', '')
-                                float(val); break
-                            except ValueError:
-                                continue
+                            val = value_inc + line_list[j - 1].split('\\')[0]
+                            val = val.split('=')[-1]
+                        try:
+                            val = val.replace(' ', '')
+                            float(val); break
+                        except ValueError:
+                            continue
     if val is None:
         raise Exception('Target string {0} not found!'.format(target_str))
     # print(target_str, val, line_list[-3])  # For debugging
@@ -57,32 +57,41 @@ def find_val(line_list, target_str):
 
 
 if __name__ == "__main__":
-    class_type = 'Second_Products'
-    input_dir = '{0}/Cross_Conjugation/Conformational_Search/mystery/Chloroform/{1}'.format(DATA_PATH, class_type)
+    class_type = 'Enol'
+    input_dir = '{0}/QM/Conformational_Search/Products/{1}'.format(DATA_PATH, class_type)
     groups = [f for f in os.listdir(input_dir) if isdir('{0}/{1}'.format(input_dir, f)) and 'exclude' not in f]  # and 'Reactant' not in f
     print("\n# Tabulating values of interest from Gaussian .out files to an Excel sheet...")
     print("\n# Input directory:\n", input_dir, "\n\n# Groups:\n", groups, "\n")
-    method_list, title_list, molecule_list, conformer_list, NImag_list, Z_list, E_list, H_list, G_list = [], [], [], [], [], [], [], [], []
+    method_list, title_list, molecule_list, conformer_list, NImag_list, Z_list, E_list, H_list, G_list, MP2_list = [], [], [], [], [], [], [], [], [], []
     var_fill_list = [method_list, NImag_list, Z_list, E_list, H_list, G_list]
+    # var_fill_list = [method_list, MP2_list]
     keyword_list = [['%chk'], ['NI', 'Im'], ['zero-point Energies'], ['HF'], ['thermal Enthalpies'], ['thermal Free Energies']]
+    # keyword_list = [['%chk'], ['MP2']]
     for i, group in enumerate(groups):  # Potentially R, TSS, P
         group_dir = '{0}/{1}'.format(input_dir, group)
         conformers = [g for g in os.listdir(group_dir) if isdir('{0}/{1}'.format(group_dir, g))]
         for j, title in enumerate(conformers):
             conformer_dir = '{0}/{1}'.format(group_dir, title)
             print("Conformer:", title)
-            with open('{0}/{1}.out'.format(conformer_dir, title), 'r') as f:
-                line_list = f.readlines()
-                line_list.reverse()
-                for i, var_list in enumerate(var_fill_list):
-                    val = find_val(line_list, keyword_list[i])
-                    var_list.append(val)
-                title_list.append(title)
-                molecule_list.append(replaceMultiple(title.split('c')[0].replace('_', ''), ['TR', 'TSS', 'TP'], ''))
-                conformer_list.append('c' + title.split('c')[-1])
+            try:
+                with open('{0}/{1}.out'.format(conformer_dir, title), 'r') as f:
+                    line_list = f.readlines()
+                    line_list.reverse()
+                    for i, var_list in enumerate(var_fill_list):
+                        val = find_val(line_list, keyword_list[i])
+                        var_list.append(val)
+                    title_list.append(title)
+                    molecule_list.append(replaceMultiple(title.split('c')[0].replace('_', ''), ['TR', 'TSS', 'TP'], ''))
+                    conformer_list.append('c' + title.split('c')[-1])
+            except FileNotFoundError:
+                print("{0}/{1}.out not found!".format(conformer_dir, title))
+                continue
     data = {'Method': method_list, 'Title': title_list, 'Molecule': molecule_list, 'Conformer': conformer_list, 'NImag': NImag_list,
-            'Z (Hartree)': Z_list, 'E (Hartree)': E_list, 'H (Hartree)': H_list, 'G (Hartree)': G_list}
+           'Z (Hartree)': Z_list, 'E (Hartree)': E_list, 'H (Hartree)': H_list, 'G (Hartree)': G_list}
+    # data = {'Method': method_list, 'Title': title_list, 'Molecule': molecule_list, 'Conformer': conformer_list,
+    #        'MP2': MP2_list}
     df = pd.DataFrame(data, columns=['Method', 'Title', 'Molecule', 'Conformer', 'NImag', 'Z (Hartree)', 'E (Hartree)', 'H (Hartree)', 'G (Hartree)'])
+    # df = pd.DataFrame(data, columns=['Method', 'Title', 'Molecule', 'Conformer', 'MP2'])
     title_list = sort_human(title_list)
     sorted_df = df.set_index('Title').reindex(title_list).reset_index()
     print("# Sorted data frame:\n", sorted_df)

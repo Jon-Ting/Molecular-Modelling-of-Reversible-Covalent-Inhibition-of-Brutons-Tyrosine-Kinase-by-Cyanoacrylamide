@@ -75,7 +75,7 @@ combination_dict = {
                 "R2": 0.7741,
                 "X-AXIS": -0.005,
                 "Y-AXIS": 0,
-                "LEG": "lower left",
+                "LEG": "upper right",
                 "ALIGN": "right",
                 "FONTSIZE": "x-small",
                 "X-NAME": "CM5 Charge (e)"
@@ -103,9 +103,9 @@ combination_dict = {
                 "X-NAME": "ChelpG Charge (e)"
             },
             "Omega": {
-                "M": -0.7225,
-                "C": 56.999,
-                "R2": 0.9376,
+                "M": -0.7187,
+                "C": 59.268,
+                "R2": 0.7297,
                 "X-AXIS": -0.4,
                 "Y-AXIS": 0,
                 "LEG": "upper right",
@@ -214,7 +214,7 @@ combination_dict = {
                 "R2": 0.7221,
                 "X-AXIS": 0.004,
                 "Y-AXIS": 0,
-                "LEG": "lower left",
+                "LEG": "upper right",
                 "ALIGN": "left",
                 "FONTSIZE": "x-small",
                 "X-NAME": "Hirshfeld Charge (e)"
@@ -225,7 +225,7 @@ combination_dict = {
                 "R2": 0.6279,
                 "X-AXIS": -0.005,
                 "Y-AXIS": 0,
-                "LEG": "lower left",
+                "LEG": "upper right",
                 "ALIGN": "right",
                 "FONTSIZE": "x-small",
                 "X-NAME": "CM5 Charge (e)"
@@ -253,9 +253,9 @@ combination_dict = {
                 "X-NAME": "ChelpG Charge (e)"
             },
             "Omega": {
-                "M": -0.9655,
-                "C": 61.066,
-                "R2": 0.9274,
+                "M": -1.046,
+                "C": 68.634,
+                "R2": 0.5807,
                 "X-AXIS": -0.3,
                 "Y-AXIS": 0,
                 "LEG": "upper right",
