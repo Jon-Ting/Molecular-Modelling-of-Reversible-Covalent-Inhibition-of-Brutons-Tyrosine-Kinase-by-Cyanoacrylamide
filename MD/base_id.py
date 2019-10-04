@@ -22,7 +22,7 @@ CURR_DIR = os.getcwd()
 
 if __name__ == "__main__":
 
-    sort_dict, dist_thresh, inhibitor, system_type, num_subplots = False, "All", 1, "noncov_H", 6
+    sort_dict, dist_thresh, inhibitor, system_type, num_subplots = False, 10, 3, "noncov_H", 6
 
     for i in [1, 2]:
 
@@ -97,7 +97,7 @@ if __name__ == "__main__":
         target_H = "CYS481" if "non" in system_type else "Ca"
         num_row, subplot_index = int(num_subplots / 2), 0
         fig, axes = plt.subplots(nrows=num_row, ncols=2, sharex=True, sharey=True, figsize=(PLOTS_WIDTH, PLOTS_HEIGHT))
-        fig.subplots_adjust(top=0.95, bottom=0.07, left=0.08, right=0.95, wspace=0.15, hspace=0.15)
+        fig.subplots_adjust(top=0.95, bottom=0.07, left=0.09, right=0.95, wspace=0.15, hspace=0.15)
         fig.suptitle(r"Distance of Charged Residues of Interest from {0} H".format(target_H), horizontalalignment='center',
                      fontsize=14, weight='bold')
         fig.text(0.5, 0.02, "Time (ns)", va='center', ha='center')
@@ -137,5 +137,5 @@ if __name__ == "__main__":
             plt.setp(leg.get_lines(), linewidth=4)
             # plt.ylim(None, None); plt.xlim(None, None)
         fig.delaxes(axes[-1][-1])
-        plt.show()
         plt.savefig(r"{0}/Distance of {1} H from Charged Residues Rep {2} within {3} A".format(STORE_DIR, target_H, i, dist_thresh))
+        plt.show()
