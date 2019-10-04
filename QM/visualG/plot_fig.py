@@ -30,11 +30,27 @@ def lin_reg(m, c, r2, xlimit, leg_loc, font_size="x-small"):
 
 
 if __name__ == "__main__":
-    combination = "CombinationG"
+    combination = "CombinationI"
     csv_file = "{0}/QM/Conformational_Analysis/Most_stable_conformers/{1}_Properties_Correlation.csv".format(DATA_PATH, combination)
     df = pd.read_csv(csv_file, index_col=0)
     print(df)
     prop_dict = combination_dict[combination[-1]]
+
+    # TS S-C Distance
+    chosen_dict = prop_dict["SC"]
+    m, c, r2, x_axis, y_axis, leg, fontsize = chosen_dict["M"], chosen_dict["C"], chosen_dict["R2"], chosen_dict[
+        "X-AXIS"], chosen_dict["Y-AXIS"], chosen_dict["LEG"], chosen_dict["FONTSIZE"]
+    fig = plt.figure(figsize=(SINGLE_PLOT_WIDTH, SINGLE_PLOT_HEIGHT))
+    fig.subplots_adjust(top=0.9, bottom=0.1, left=0.1, right=0.95)
+    ax = sns.scatterplot(x="TS S-C Distance (A)", y="Addition Barrier (kcal/mol)", data=df, hue="Ligand", legend=False, s=100)
+    ax.set(xlabel=r"TS S-C$\beta$ Distance ($\AA$)")
+    for line in range(1, df.shape[0] + 1):
+        ax.text(df["TS S-C Distance (A)"][line] + x_axis, df["Addition Barrier (kcal/mol)"][line] + y_axis,
+                df["Ligand"][line], horizontalalignment='center', size='small', color='black')
+    lin_reg(m, c, r2, plt.xlim(), leg, fontsize)
+    plt.ylim(None, None); plt.xlim(None, None)
+    plt.tight_layout()
+    plt.savefig(r"{0}/TS S-C Distance".format(combination))
 
     # Ligand LUMO Energy
     chosen_dict = prop_dict["LUMO"]
