@@ -20,18 +20,20 @@ CURR_DIR = os.getcwd()
 
 if __name__ == "__main__":
 
-    num_subplots, fig_type = 6, "Line"
+    num_subplots, fig_type = 6, "Hist"
 
     PLOTS_WIDTH, PLOTS_HEIGHT = SIX_PLOTS_WIDTH, SIX_PLOTS_HEIGHT
     num_row, subplot_index = int(num_subplots / 2), 0
     fig, axes = plt.subplots(nrows=num_row, ncols=2, sharex=True, sharey=True, figsize=(PLOTS_WIDTH, PLOTS_HEIGHT))
     if fig_type == "Line":
         fig.subplots_adjust(top=0.95, bottom=0.06, left=0.08, right=0.97, wspace=0.15, hspace=0.15)
+        fig.text(0.5, 0.02, "Time (ns)", va='center', ha='center')
+        fig.text(0.02, 0.5, "Number of H-Bonds", va='center', ha='center', rotation='vertical')
     elif fig_type == "Hist":
         fig.subplots_adjust(top=0.95, bottom=0.07, left=0.09, right=0.97, wspace=0.15, hspace=0.15)
+        fig.text(0.5, 0.02, "Number of H-Bonds", va='center', ha='center')
+        fig.text(0.02, 0.5, "Proportion", va='center', ha='center', rotation='vertical')
     fig.suptitle("Number of H-Bonds throughout MD Simulations of Different Inhibitors", horizontalalignment='center', fontsize=14, weight='bold')
-    fig.text(0.5, 0.02, "Time (ns)", va='center', ha='center')
-    fig.text(0.02, 0.5, "Number", va='center', ha='center', rotation='vertical')
 
     for i, inhibitor in enumerate(inhibitor_list):
         combined_df = pd.DataFrame(list(np.arange(0.005, 100.005, 0.005)), columns=["Time (ns)"])
