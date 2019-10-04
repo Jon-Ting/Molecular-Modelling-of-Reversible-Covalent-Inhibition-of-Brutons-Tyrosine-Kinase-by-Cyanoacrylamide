@@ -30,7 +30,7 @@ def lin_reg(m, c, r2, xlimit, leg_loc, font_size="x-small"):
 
 
 if __name__ == "__main__":
-    combination = "CombinationI"
+    combination = "CombinationG"
     csv_file = "{0}/QM/Conformational_Analysis/Most_stable_conformers/{1}_Properties_Correlation.csv".format(DATA_PATH, combination)
     df = pd.read_csv(csv_file, index_col=0)
     print(df)

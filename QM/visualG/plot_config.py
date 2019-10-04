@@ -75,7 +75,7 @@ combination_dict = {
                 "R2": 0.7741,
                 "X-AXIS": -0.005,
                 "Y-AXIS": 0,
-                "LEG": "lower left",
+                "LEG": "upper right",
                 "ALIGN": "right",
                 "FONTSIZE": "x-small",
                 "X-NAME": "CM5 Charge (e)"
@@ -103,9 +103,9 @@ combination_dict = {
                 "X-NAME": "ChelpG Charge (e)"
             },
             "Omega": {
-                "M": -0.7225,
-                "C": 56.999,
-                "R2": 0.9376,
+                "M": -0.7187,
+                "C": 59.268,
+                "R2": 0.7297,
                 "X-AXIS": -0.4,
                 "Y-AXIS": 0,
                 "LEG": "upper right",
@@ -163,125 +163,152 @@ combination_dict = {
     },
     "G": {
         "LUMO": {
-                "M": -3.5523,
-                "C": 10.639,
-                "R2": 0.2152,
-                "X-AXIS": -0.03,
-                "Y-AXIS": 0,
-                "LEG": "upper right",
-                "FONTSIZE": "x-small"
-            },
+            "M": 0.6341,
+            "C": 11.665,
+            "R2": 0.8038,
+            "X-AXIS": 0,
+            "Y-AXIS": 0.4,
+            "LEG": "upper left",
+            "ALIGN": "center",
+            "FONTSIZE": "medium",
+            "X-NAME": "Ligand LUMO Energy (kcal/mol)"
+        },
+
         "Charge": {
             "Mulliken": {
-                "M": -3.5523,
-                "C": 10.639,
-                "R2": 0.2152,
-                "X-AXIS": -0.03,
+                "M": -3.8031,
+                "C": 13.26,
+                "R2": 0.2089,
+                "X-AXIS": -0.04,
                 "Y-AXIS": 0,
                 "LEG": "upper right",
-                "FONTSIZE": "x-small"
+                "ALIGN": "right",
+                "FONTSIZE": "x-small",
+                "X-NAME": "Mulliken Charge (e)"
             },
             "NBO": {
-                "M": -3.5523,
-                "C": 10.639,
-                "R2": 0.2152,
-                "X-AXIS": -0.03,
+                "M": -24.677,
+                "C": 12.381,
+                "R2": 0.678,
+                "X-AXIS": -0.01,
                 "Y-AXIS": 0,
                 "LEG": "upper right",
-                "FONTSIZE": "x-small"
+                "ALIGN": "right",
+                "FONTSIZE": "x-small",
+                "X-NAME": "NBO Charge (e)"
             },
             "MK": {
-                "M": -3.5523,
-                "C": 10.639,
-                "R2": 0.2152,
-                "X-AXIS": -0.03,
+                "M": -15.228,
+                "C": 12.617,
+                "R2": 0.7188,
+                "X-AXIS": 0.02,
                 "Y-AXIS": 0,
                 "LEG": "upper right",
-                "FONTSIZE": "x-small"
+                "ALIGN": "left",
+                "FONTSIZE": "x-small",
+                "X-NAME": "Merz-Kollman Charge (e)"
             },
             "Hirshfeld": {
-                "M": -3.5523,
-                "C": 10.639,
-                "R2": 0.2152,
-                "X-AXIS": -0.03,
+                "M": -85.733,
+                "C": 15.179,
+                "R2": 0.7221,
+                "X-AXIS": 0.004,
                 "Y-AXIS": 0,
                 "LEG": "upper right",
-                "FONTSIZE": "x-small"
+                "ALIGN": "left",
+                "FONTSIZE": "x-small",
+                "X-NAME": "Hirshfeld Charge (e)"
             },
             "CM5": {
-                "M": -3.5523,
-                "C": 10.639,
-                "R2": 0.2152,
-                "X-AXIS": -0.03,
+                "M": -52.002,
+                "C": 11.53,
+                "R2": 0.6279,
+                "X-AXIS": -0.005,
                 "Y-AXIS": 0,
                 "LEG": "upper right",
-                "FONTSIZE": "x-small"
-            },
-            "ChelpG": {
-                "M": -3.5523,
-                "C": 10.639,
-                "R2": 0.2152,
-                "X-AXIS": -0.03,
-                "Y-AXIS": 0,
-                "LEG": "upper right",
-                "FONTSIZE": "x-small"
+                "ALIGN": "right",
+                "FONTSIZE": "x-small",
+                "X-NAME": "CM5 Charge (e)"
             },
             "AIM": {
-                "M": -3.5523,
-                "C": 10.639,
-                "R2": 0.2152,
-                "X-AXIS": -0.03,
+                "M": -95.9,
+                "C": 15.637,
+                "R2": 0.7617,
+                "X-AXIS": -0.004,
                 "Y-AXIS": 0,
                 "LEG": "upper right",
-                "FONTSIZE": "x-small"
+                "ALIGN": "right",
+                "FONTSIZE": "x-small",
+                "X-NAME": "AIM Charge (e)"
+            },
+            "ChelpG": {
+                "M": -23.509,
+                "C": 12.432,
+                "R2": 0.8589,
+                "X-AXIS": -0.007,
+                "Y-AXIS": 0.18,
+                "LEG": "upper right",
+                "ALIGN": "right",
+                "FONTSIZE": "x-small",
+                "X-NAME": "ChelpG Charge (e)"
             },
             "Omega": {
-                "M": -3.5523,
-                "C": 10.639,
-                "R2": 0.2152,
-                "X-AXIS": -0.03,
+                "M": -1.046,
+                "C": 68.634,
+                "R2": 0.5807,
+                "X-AXIS": -0.3,
                 "Y-AXIS": 0,
                 "LEG": "upper right",
-                "FONTSIZE": "x-small"
+                "ALIGN": "right",
+                "FONTSIZE": "x-small",
+                "X-NAME": "Electrophilicity Index"
             },
         },
         "DI": {
             "Thiolate": {
-                "M": -3.5523,
-                "C": 10.639,
-                "R2": 0.2152,
-                "X-AXIS": -0.03,
+                "M": 16.642,
+                "C": 10.236,
+                "R2": 0.6431,
+                "X-AXIS": -0.02,
                 "Y-AXIS": 0,
-                "LEG": "upper right",
-                "FONTSIZE": "x-small"
+                "LEG": "upper left",
+                "ALIGN": "right",
+                "FONTSIZE": "x-small",
+                "X-NAME": "Thiolate Distortion Energy (kcal/mol)"
             },
             "Ligand": {
-                "M": -3.5523,
-                "C": 10.639,
-                "R2": 0.2152,
-                "X-AXIS": -0.03,
-                "Y-AXIS": 0,
-                "LEG": "upper right",
-                "FONTSIZE": "x-small"
+                "M": 0.9119,
+                "C": 6.9095,
+                "R2": 0.9469,
+                "X-AXIS": -1.4,
+                "Y-AXIS": 0.55,
+                "LEG": "best",
+                "ALIGN": "left",
+                "FONTSIZE": "x-small",
+                "X-NAME": "Ligand Distortion Energy (kcal/mol)"
             },
             "Activation": {
-                "M": -3.5523,
-                "C": 10.639,
-                "R2": 0.2152,
-                "X-AXIS": -0.03,
-                "Y-AXIS": 0,
-                "LEG": "upper right",
-                "FONTSIZE": "x-small"
+                "M": 0.9652,
+                "C": 10.666,
+                "R2": 0.9044,
+                "X-AXIS": -0.35,
+                "Y-AXIS": 0.24,
+                "LEG": "upper left",
+                "ALIGN": "right",
+                "FONTSIZE": "x-small",
+                "X-NAME": "Activation Energy (kcal/mol)"
             },
             "Interaction": {
-                "M": -3.5523,
-                "C": 10.639,
-                "R2": 0.2152,
-                "X-AXIS": -0.03,
+                "M": -2.1245,
+                "C": 4.387,
+                "R2": 0.2975,
+                "X-AXIS": 0.1,
                 "Y-AXIS": 0,
-                "LEG": "upper right",
-                "FONTSIZE": "x-small"
+                "LEG": "lower left",
+                "ALIGN": "left",
+                "FONTSIZE": "x-small",
+                "X-NAME": "Interaction Energy (kcal/mol)"
             },
         }
-    }
+    },
 }
