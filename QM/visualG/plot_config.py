@@ -12,6 +12,18 @@ DI_list = ["Thiolate", "Ligand", "Activation", "Interaction"]
 
 combination_dict = {
     "I": {
+        "SC": {
+            "M": -15.195,
+            "C": 50.709,
+            "R2": 0.8754,
+            "X-AXIS": 0,
+            "Y-AXIS": 0.4,
+            "LEG": "upper right",
+            "ALIGN": "center",
+            "FONTSIZE": "medium",
+            "X-NAME": r"TS S-C Distance ($\AA$)"
+        },
+
         "LUMO": {
             "M": 0.6121,
             "C": 22.143,
