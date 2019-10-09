@@ -10,6 +10,29 @@ Though recognition of my effort is appreciated! XD
 charge_list = ["Mulliken", "NBO", "MK", "Hirshfeld", "CM5", "AIM", "ChelpG", "Omega"]
 DI_list = ["Thiolate", "Ligand", "Activation", "Interaction"]
 
+benchmarking_data = {"Measure": ["MAD", "MAD", "MAD", "MAD", "MAD", "MAD", "MAD", "MAD", "MAD", "MAD",
+                                 "RMSD", "RMSD", "RMSD", "RMSD", "RMSD", "RMSD", "RMSD", "RMSD", "RMSD", "RMSD",
+                                 "Corrected MAD", "Corrected MAD", "Corrected MAD", "Corrected MAD", "Corrected MAD", "Corrected MAD", "Corrected MAD", "Corrected MAD", "Corrected MAD", "Corrected MAD",
+                                 "Corrected RMSD", "Corrected RMSD", "Corrected RMSD", "Corrected RMSD", "Corrected RMSD", "Corrected RMSD", "Corrected RMSD", "Corrected RMSD", "Corrected RMSD", "Corrected RMSD"],
+                     "Method": ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J",
+                                "A", "B", "C", "D", "E", "F", "G", "H", "I", "J",
+                                "A", "B", "C", "D", "E", "F", "G", "H", "I", "J",
+                                "A", "B", "C", "D", "E", "F", "G", "H", "I", "J"],
+                     "Error (kcal/mol)": [4.0, 1.4, 0.8, 2.3, 3.0, 1.9, 1.7, 1.3, 0.7, 0.7,
+                               4.1, 1.4, 1.1, 2.4, 3.3, 2.0, 1.7, 1.2, 1.1, 1.0,
+                               4.5, 1.5, 0.5, 2.6, 3.6, 2.1, 1.7, 1.0, 0.3, 0.4,
+                               4.5, 1.5, 0.6, 2.6, 3.6, 2.1, 1.8, 1.0, 0.4, 0.5]}
+
+barrier_data = {"Mechanism": ["Base-Catalysed Proton Abstraction", "Base-Catalysed Proton Abstraction", "Base-Catalysed Proton Abstraction", "Base-Catalysed Proton Abstraction", "Base-Catalysed Proton Abstraction",
+                              "4-Membered Intramolecular Proton Transfer", "4-Membered Intramolecular Proton Transfer", "4-Membered Intramolecular Proton Transfer", "4-Membered Intramolecular Proton Transfer", "4-Membered Intramolecular Proton Transfer",
+                              "6-Membered Intramolecular Proton Transfer", "6-Membered Intramolecular Proton Transfer", "6-Membered Intramolecular Proton Transfer", "6-Membered Intramolecular Proton Transfer", "6-Membered Intramolecular Proton Transfer"],
+                "Ligand": ["1", "3", "47", "5", "9",
+                           "1", "3", "47", "5", "9",
+                           "1", "3", "47", "5", "9"],
+                "Elimination Barrier (kcal/mol)": [11.0-(-5.9), 16.0-(-3.9), 13.9-(-4.0), 20.0-(-10.8), 14.2-(-5.5),
+                                                   43.4-(-5.9), 42.7-(-3.9), 45.2-(-4.0), 52.0-(-10.8), 47.3-(-5.5),
+                                                   24.9-(-5.9), 26.0-(-3.9), 26.3-(-4.0), 28.1-(-10.8), 30.0-(-5.5)]}
+
 combination_dict = {
     "I": {
         "SC": {
