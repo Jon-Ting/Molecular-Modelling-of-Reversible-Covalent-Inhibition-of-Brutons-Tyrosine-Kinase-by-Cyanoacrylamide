@@ -32,7 +32,7 @@ if __name__ == "__main__":
     elif fig_type == "Hist":
         fig.subplots_adjust(top=0.95, bottom=0.06, left=0.10, right=0.97, wspace=0.25, hspace=0.15)
         fig.text(0.5, 0.02, u"Angle (\N{DEGREE SIGN})", va='center', ha='center')
-        fig.text(0.02, 0.5, "Proportion", va='center', ha='center', rotation='vertical')
+        fig.text(0.02, 0.5, "Population", va='center', ha='center', rotation='vertical')
     fig.suptitle("Dihedral of C=C-C=O For All Inhibitors", horizontalalignment='center', fontsize=14, weight='bold')
 
     for i, inhibitor in enumerate(inhibitor_list):

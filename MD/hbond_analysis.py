@@ -32,7 +32,7 @@ if __name__ == "__main__":
     elif fig_type == "Hist":
         fig.subplots_adjust(top=0.95, bottom=0.07, left=0.09, right=0.97, wspace=0.15, hspace=0.15)
         fig.text(0.5, 0.02, "Number of H-Bonds", va='center', ha='center')
-        fig.text(0.02, 0.5, "Proportion", va='center', ha='center', rotation='vertical')
+        fig.text(0.02, 0.5, "Population", va='center', ha='center', rotation='vertical')
     fig.suptitle("Number of H-Bonds throughout MD Simulations of Different Inhibitors", horizontalalignment='center', fontsize=14, weight='bold')
 
     for i, inhibitor in enumerate(inhibitor_list):
