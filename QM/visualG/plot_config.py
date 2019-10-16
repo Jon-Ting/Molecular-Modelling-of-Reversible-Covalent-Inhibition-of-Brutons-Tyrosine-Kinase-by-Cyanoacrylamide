@@ -7,8 +7,10 @@ Though recognition of my effort is appreciated! XD
 """
 
 
-charge_list = ["Mulliken", "NBO", "MK", "Hirshfeld", "CM5", "AIM", "ChelpG", "Omega"]
-DI_list = ["Thiolate", "Ligand", "Activation", "Interaction"]
+charge_list = ["Mulliken", "NBO", "MK", "Hirshfeld", "CM5", "QTAIM", "ChelpG", "Omega"]
+charge_list_A = ["Mulliken", "QTAIM"]
+charge_list_B = ["NBO", "MK", "Hirshfeld", "CM5", "ChelpG", "Omega"]
+DI_list = ["Thiolate", "Inhibitor", "Activation", "Interaction"]
 
 benchmarking_data = {"Measure": ["MAD", "MAD", "MAD", "MAD", "MAD", "MAD", "MAD", "MAD", "MAD", "MAD",
                                  "RMSD", "RMSD", "RMSD", "RMSD", "RMSD", "RMSD", "RMSD", "RMSD", "RMSD", "RMSD",
@@ -26,7 +28,7 @@ benchmarking_data = {"Measure": ["MAD", "MAD", "MAD", "MAD", "MAD", "MAD", "MAD"
 barrier_data = {"Mechanism": ["Base-Catalysed Proton Abstraction", "Base-Catalysed Proton Abstraction", "Base-Catalysed Proton Abstraction", "Base-Catalysed Proton Abstraction", "Base-Catalysed Proton Abstraction",
                               "4-Membered Intramolecular Proton Transfer", "4-Membered Intramolecular Proton Transfer", "4-Membered Intramolecular Proton Transfer", "4-Membered Intramolecular Proton Transfer", "4-Membered Intramolecular Proton Transfer",
                               "6-Membered Intramolecular Proton Transfer", "6-Membered Intramolecular Proton Transfer", "6-Membered Intramolecular Proton Transfer", "6-Membered Intramolecular Proton Transfer", "6-Membered Intramolecular Proton Transfer"],
-                "Ligand": ["1", "3", "47", "5", "9",
+                "Inhibitor": ["1", "3", "47", "5", "9",
                            "1", "3", "47", "5", "9",
                            "1", "3", "47", "5", "9"],
                 "Elimination Barrier (kcal/mol)": [11.0-(-5.9), 16.0-(-3.9), 13.9-(-4.0), 20.0-(-10.8), 14.2-(-5.5),
@@ -56,7 +58,7 @@ combination_dict = {
             "LEG": "upper left",
             "ALIGN": "center",
             "FONTSIZE": "medium",
-            "X-NAME": "Ligand LUMO Energy (kcal/mol)"
+            "X-NAME": "Inhibitor LUMO Energy (kcal/mol)"
         },
 
         "Charge": {
@@ -68,7 +70,7 @@ combination_dict = {
                 "Y-AXIS": 0,
                 "LEG": "upper right",
                 "ALIGN": "right",
-                "FONTSIZE": "x-small",
+                "FONTSIZE": "small",
                 "X-NAME": "Mulliken Charge (e)"
             },
             "NBO": {
@@ -79,7 +81,7 @@ combination_dict = {
                 "Y-AXIS": 0,
                 "LEG": "upper right",
                 "ALIGN": "right",
-                "FONTSIZE": "x-small",
+                "FONTSIZE": "small",
                 "X-NAME": "NBO Charge (e)"
             },
             "MK": {
@@ -90,7 +92,7 @@ combination_dict = {
                 "Y-AXIS": 0,
                 "LEG": "upper right",
                 "ALIGN": "left",
-                "FONTSIZE": "x-small",
+                "FONTSIZE": "small",
                 "X-NAME": "Merz-Kollman Charge (e)"
             },
             "Hirshfeld": {
@@ -112,10 +114,10 @@ combination_dict = {
                 "Y-AXIS": 0,
                 "LEG": "upper right",
                 "ALIGN": "right",
-                "FONTSIZE": "x-small",
+                "FONTSIZE": "small",
                 "X-NAME": "CM5 Charge (e)"
             },
-            "AIM": {
+            "QTAIM": {
                 "M": -92.849,
                 "C": 14.411,
                 "R2": 0.8573,
@@ -123,8 +125,8 @@ combination_dict = {
                 "Y-AXIS": 0,
                 "LEG": "upper right",
                 "ALIGN": "right",
-                "FONTSIZE": "x-small",
-                "X-NAME": "AIM Charge (e)"
+                "FONTSIZE": "small",
+                "X-NAME": "QTAIM Charge (e)"
             },
             "ChelpG": {
                 "M": -19.394,
@@ -134,7 +136,7 @@ combination_dict = {
                 "Y-AXIS": 0.2,
                 "LEG": "upper right",
                 "ALIGN": "right",
-                "FONTSIZE": "x-small",
+                "FONTSIZE": "small",
                 "X-NAME": "ChelpG Charge (e)"
             },
             "Omega": {
@@ -145,7 +147,7 @@ combination_dict = {
                 "Y-AXIS": 0,
                 "LEG": "upper right",
                 "ALIGN": "right",
-                "FONTSIZE": "x-small",
+                "FONTSIZE": "small",
                 "X-NAME": "Electrophilicity Index"
             },
         },
@@ -161,7 +163,7 @@ combination_dict = {
                 "FONTSIZE": "x-small",
                 "X-NAME": "Thiolate Distortion Energy (kcal/mol)"
             },
-            "Ligand": {
+            "Inhibitor": {
                 "M": 0.8082,
                 "C": 5.3355,
                 "R2": 0.9760,
@@ -170,7 +172,7 @@ combination_dict = {
                 "LEG": "best",
                 "ALIGN": "left",
                 "FONTSIZE": "x-small",
-                "X-NAME": "Ligand Distortion Energy (kcal/mol)"
+                "X-NAME": "Inhibitor Distortion Energy (kcal/mol)"
             },
             "Activation": {
                 "M": 0.9013,
@@ -206,7 +208,7 @@ combination_dict = {
             "LEG": "upper left",
             "ALIGN": "center",
             "FONTSIZE": "medium",
-            "X-NAME": "Ligand LUMO Energy (kcal/mol)"
+            "X-NAME": "Inhibitor LUMO Energy (kcal/mol)"
         },
 
         "Charge": {
@@ -265,7 +267,7 @@ combination_dict = {
                 "FONTSIZE": "x-small",
                 "X-NAME": "CM5 Charge (e)"
             },
-            "AIM": {
+            "QTAIM": {
                 "M": -95.9,
                 "C": 15.637,
                 "R2": 0.7617,
@@ -274,7 +276,7 @@ combination_dict = {
                 "LEG": "upper right",
                 "ALIGN": "right",
                 "FONTSIZE": "x-small",
-                "X-NAME": "AIM Charge (e)"
+                "X-NAME": "QTAIM Charge (e)"
             },
             "ChelpG": {
                 "M": -23.509,
@@ -311,7 +313,7 @@ combination_dict = {
                 "FONTSIZE": "x-small",
                 "X-NAME": "Thiolate Distortion Energy (kcal/mol)"
             },
-            "Ligand": {
+            "Inhibitor": {
                 "M": 0.9119,
                 "C": 6.9095,
                 "R2": 0.9469,
@@ -320,7 +322,7 @@ combination_dict = {
                 "LEG": "best",
                 "ALIGN": "left",
                 "FONTSIZE": "x-small",
-                "X-NAME": "Ligand Distortion Energy (kcal/mol)"
+                "X-NAME": "Inhibitor Distortion Energy (kcal/mol)"
             },
             "Activation": {
                 "M": 0.9652,

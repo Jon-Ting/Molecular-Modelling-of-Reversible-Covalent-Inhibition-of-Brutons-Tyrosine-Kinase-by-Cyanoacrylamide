@@ -23,6 +23,7 @@
       <w>labelcolour</w>
       <w>labeloffset</w>
       <w>linksto</w>
+      <w>lumo</w>
       <w>mulliken</w>
       <w>ncpus</w>
       <w>noeigentest</w>
@@ -36,6 +37,7 @@
       <w>santonin</w>
       <w>scrf</w>
       <w>solv</w>
+      <w>suptitle</w>
       <w>textcolour</w>
       <w>textoffset</w>
       <w>thiolate</w>
