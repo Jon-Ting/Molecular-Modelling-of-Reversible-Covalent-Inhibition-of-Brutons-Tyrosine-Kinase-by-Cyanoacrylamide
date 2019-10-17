@@ -20,7 +20,7 @@ CURR_DIR = os.getcwd()
 
 if __name__ == "__main__":
 
-    num_subplots, fig_type, separate_chain = 6, "Hist", True
+    num_subplots, fig_type, separate_chain = 6, "Hist", False
 
     if separate_chain:
         # Separate chains

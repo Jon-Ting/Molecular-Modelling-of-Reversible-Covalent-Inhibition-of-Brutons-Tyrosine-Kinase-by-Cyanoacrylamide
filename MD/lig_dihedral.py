@@ -62,5 +62,8 @@ if __name__ == "__main__":
         leg = plt.legend(loc="upper right")
         plt.setp(leg.get_lines(), linewidth=4)
         # plt.locator_params(axis='y', nbins=6)
+    fig.text(0.1, 0.941, "(a)", va='center', ha='left'); fig.text(0.583, 0.941, "(b)", va='center', ha='left')
+    fig.text(0.1, 0.6315, "(c)", va='center', ha='left'); fig.text(0.583, 0.6315, "(d)", va='center', ha='left')
+    fig.text(0.1, 0.32, "(e)", va='center', ha='left'); fig.text(0.583, 0.32, "(f)", va='center', ha='left')
     plt.savefig("{0}/Dihedral of C=C-C=O For All Inhibitors {1}".format(CURR_DIR, fig_type))
     plt.show()

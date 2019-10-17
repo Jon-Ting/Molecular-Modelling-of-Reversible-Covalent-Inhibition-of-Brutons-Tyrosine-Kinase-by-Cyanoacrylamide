@@ -20,7 +20,7 @@ CURR_DIR = os.getcwd()
 
 if __name__ == "__main__":
 
-    system_type, num_subplots, fig_type = "noncov", 6, "Hist"
+    system_type, num_subplots, fig_type = "noncov", 6, "Line"
 
     PLOTS_WIDTH, PLOTS_HEIGHT = SIX_PLOTS_WIDTH, SIX_PLOTS_HEIGHT
     num_row, subplot_index = int(num_subplots / 2), 0
@@ -62,5 +62,8 @@ if __name__ == "__main__":
         leg = plt.legend(loc="upper right")
         plt.setp(leg.get_lines(), linewidth=4)
         # plt.locator_params(axis='y', nbins=6)
+    fig.text(0.06, 0.941, "(a)", va='center', ha='left'); fig.text(0.545, 0.941, "(b)", va='center', ha='left')
+    fig.text(0.06, 0.631, "(c)", va='center', ha='left'); fig.text(0.546, 0.631, "(d)", va='center', ha='left')
+    fig.text(0.06, 0.32, "(e)", va='center', ha='left'); fig.text(0.547, 0.32, "(f)", va='center', ha='left')
     plt.savefig("{0}/Distance between CYS481 S and Cb {1}".format(CURR_DIR, fig_type))
     plt.show()

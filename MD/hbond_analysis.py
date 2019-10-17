@@ -56,7 +56,8 @@ if __name__ == "__main__":
             combined_df.plot(x="Time (ns)", y=label_list, kind="line", ax=plt.gca(), lw=0.1, linestyle=":")
             ax1.xaxis.label.set_visible(False)
         elif fig_type == "Hist":
-            combined_df.plot.kde(x="Time (ns)", y=label_list, bw_method=0.5, ax=plt.gca())
+            combined_df.plot.bar(x="Time (ns)", y=label_list)
+            #combined_df.plot.kde(x="Time (ns)", y=label_list, bw_method=0.5, ax=plt.gca())
             ax1.yaxis.label.set_visible(False)
         ax1.tick_params(top=False, bottom=True, left=True, right=False, labelleft=True, labelbottom=True)
         leg = plt.legend(loc="upper right")
