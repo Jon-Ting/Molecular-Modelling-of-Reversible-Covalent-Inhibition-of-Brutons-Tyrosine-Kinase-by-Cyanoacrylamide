@@ -57,9 +57,10 @@ def exp_time(k, t_half, RT):
 
 if __name__ == "__main__":
     T = 310.15  # Temperature, assumes RT at the moment [K]
-    k, dGbarr = 3.347E-06, None  # off rate [s^-1], elimination barrier [kcal/mol]
-    t_half, RT = None, None  # half_life [s], residence time [s]
-    k, dGbarr = eyring(k, dGbarr, T)
+    k, dGbarr = None, None  # off rate [s^-1], elimination barrier [kcal/mol]
+    t_half, RT = None, 24*60  # half_life [s], residence time [s]
+    #k, dGbarr = eyring(k, dGbarr, T)
     k, t_half, RT = exp_time(k, t_half, RT)
+    k, dGbarr = eyring(k, dGbarr, T)
     print("\n--------------------------------------Done")
 
