@@ -8,8 +8,8 @@ Though recognition of my effort is appreciated! XD
 
 
 charge_list = ["Mulliken", "NBO", "MK", "Hirshfeld", "CM5", "QTAIM", "ChelpG", "Omega"]
-charge_list_A = ["Mulliken", "QTAIM"]
-charge_list_B = ["NBO", "MK", "Hirshfeld", "CM5", "ChelpG", "Omega"]
+charge_list_A = ["QTAIM", "Omega"]
+charge_list_B = ["Mulliken", "NBO", "MK", "Hirshfeld", "CM5", "ChelpG"]
 DI_list = ["Thiolate", "Inhibitor", "Activation", "Interaction"]
 
 benchmarking_data = {"Measure": ["MAD", "MAD", "MAD", "MAD", "MAD", "MAD", "MAD", "MAD", "MAD", "MAD",
