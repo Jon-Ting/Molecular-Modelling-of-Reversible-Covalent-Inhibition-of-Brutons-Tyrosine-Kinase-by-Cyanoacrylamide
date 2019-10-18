@@ -165,8 +165,6 @@ if __name__ == "__main__":
         plt.savefig("{0}/Beta-Carbon Charges for Report B".format(combination))
         # plt.show()
 
-        raise
-
         # Distortion/Interaction Analysis
         fig = plt.figure(figsize=(FOUR_PLOTS_WIDTH, FOUR_PLOTS_HEIGHT))
         fig.subplots_adjust(top=0.98, bottom=0.11, left=0.09, right=0.97, wspace=0.35, hspace=0.4)
@@ -180,8 +178,14 @@ if __name__ == "__main__":
             p1 = sns.scatterplot(x=x_name, y="Addition Barrier (kcal/mol)", data=df,
                                  hue="Inhibitor", legend=False, s=100)
             p1.set(ylabel=u"$\Delta G^\u2021$ (kcal/mol)")
-            if aspect == "Activation":
+            if aspect == "Thiolate":
+                p1.set(xlabel=u"$\Delta E^\u2021_{d\_MeS^-}$ (kcal/mol)")
+            elif aspect == "Inhibitor":
+                p1.set(xlabel=u"$\Delta E^\u2021_{d\_MA}$ (kcal/mol)")
+            elif aspect == "Activation":
                 p1.set(xlabel=u"$\Delta E^\u2021$ (kcal/mol)")
+            elif aspect == "Interaction":
+                p1.set(xlabel=u"$\Delta E^\u2021_{int}$ (kcal/mol)")
             for line in range(1, df.shape[0] + 1):
                 ax1.text(df[x_name][line] + x_axis, df["Addition Barrier (kcal/mol)"][line] + y_axis,
                          df["Inhibitor"][line], horizontalalignment=txt_align, size='small', color='black')
