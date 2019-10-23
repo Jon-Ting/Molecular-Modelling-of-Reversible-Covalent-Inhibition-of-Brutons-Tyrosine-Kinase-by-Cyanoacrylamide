@@ -13,7 +13,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
-from Honours.MD.config import MD_PATH, SINGLE_PLOT_WIDTH, SINGLE_PLOT_LEG_HEIGHT,SINGLE_PLOT_LEG_WIDTH, \
+from Honours.MD.config import MD_PATH, SINGLE_PLOT_WIDTH, SINGLE_PLOT_HEIGHT, SINGLE_PLOT_LEG_WIDTH, \
     SINGLE_PLOT_LEG_HEIGHT, FOUR_PLOTS_WIDTH, FOUR_PLOTS_HEIGHT, SIX_PLOTS_WIDTH, SIX_PLOTS_HEIGHT
 
 sns.set(context='paper', font_scale=1.5)
@@ -22,7 +22,7 @@ CURR_DIR = os.getcwd()
 
 if __name__ == "__main__":
 
-    sort_dict, dist_thresh, inhibitor, system_type, num_subplots = False, 10, 3, "noncov_H", 6
+    sort_dict, dist_thresh, inhibitor, system_type, num_subplots = False, 10, 1, "noncov_H", 6
 
     for i in [1, 2]:
 
@@ -94,15 +94,18 @@ if __name__ == "__main__":
             PLOTS_WIDTH, PLOTS_HEIGHT = FOUR_PLOTS_WIDTH, FOUR_PLOTS_HEIGHT
         else:
             PLOTS_WIDTH, PLOTS_HEIGHT = SIX_PLOTS_WIDTH, SIX_PLOTS_HEIGHT
+        PLOTS_WIDTH, PLOTS_HEIGHT = SINGLE_PLOT_WIDTH, SINGLE_PLOT_HEIGHT
         target_H = "CYS481" if "non" in system_type else "Ca"
-        num_row, subplot_index = int(num_subplots / 2), 0
-        fig, axes = plt.subplots(nrows=num_row, ncols=2, sharex=True, sharey=True, figsize=(PLOTS_WIDTH, PLOTS_HEIGHT))
-        fig.subplots_adjust(top=0.95, bottom=0.07, left=0.09, right=0.95, wspace=0.15, hspace=0.15)
-        fig.suptitle(r"Distance of Charged Residues of Interest from {0} H".format(target_H), horizontalalignment='center',
-                     fontsize=14, weight='bold')
-        fig.text(0.5, 0.02, "Time (ns)", va='center', ha='center')
+        # num_row, subplot_index = int(num_subplots / 2), 0
+        # fig, axes = plt.subplots(nrows=num_row, ncols=2, sharex=True, sharey=True, figsize=(PLOTS_WIDTH, PLOTS_HEIGHT))
+        fig = plt.figure()
+        fig.subplots_adjust(top=0.98, bottom=0.12, left=0.09, right=0.97, wspace=0.15, hspace=0.15)
+        # fig.suptitle(r"Distance of Charged Residues of Interest from {0} H".format(target_H), horizontalalignment='center',
+        #              fontsize=14, weight='bold')
+        # fig.text(0.5, 0.02, "Time (ns)", va='center', ha='center')
         fig.text(0.02, 0.5, r"Distance ($\AA$)", va='center', ha='center', rotation='vertical')
-        for j, residue in enumerate(chosen_dict.keys()):
+        # for j, residue in enumerate(chosen_dict.keys()):
+        for residue in ["arg"]:
             label_list = []
             combined_df = pd.DataFrame(list(np.arange(0.000, 100.000, 0.005)), columns=["Time (ns)"])
             for k, dat_file in enumerate(chosen_dict[residue]):
@@ -126,16 +129,16 @@ if __name__ == "__main__":
                 '''  # Seaborn plots (unsuccessful)
             if combined_df.shape[1] <= 1:  # Don't plot if only time column exists
                 continue
-            subplot_index += 1
-            ax1 = plt.subplot(int("{0}2{1}".format(num_row, subplot_index)))
+            # subplot_index += 1
+            # ax1 = plt.subplot(int("{0}2{1}".format(num_row, subplot_index)))
             # plt.figure(figsize=(SINGLE_PLOT_WIDTH, SINGLE_PLOT_LEG_HEIGHT))
             combined_df.plot(x="Time (ns)", y=label_list, kind="line", ax=plt.gca(), lw=0.3, linestyle=":")
-            ax1.tick_params(top=False, bottom=True, left=True, right=False, labelleft=True, labelbottom=True)
-            ax1.xaxis.label.set_visible(False)
+            # ax1.tick_params(top=False, bottom=True, left=True, right=False, labelleft=True, labelbottom=True)
+            # ax1.xaxis.label.set_visible(False)
             leg = plt.legend(loc="upper right")
             # leg = plt.legend(loc="upper center", ncol=3, bbox_to_anchor=(0.5, -0.3))
             plt.setp(leg.get_lines(), linewidth=4)
             # plt.ylim(None, None); plt.xlim(None, None)
-        fig.delaxes(axes[-1][-1])
-        plt.savefig(r"{0}/Distance of {1} H from Charged Residues Rep {2} within {3} A".format(STORE_DIR, target_H, i, dist_thresh))
+        # fig.delaxes(axes[-1][-1])
+        plt.savefig(r"{0}/Distance of {1} H from Arginine Residues Rep {2} within {3} A".format(STORE_DIR, target_H, i, dist_thresh))
         plt.show()
