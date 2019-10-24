@@ -16,13 +16,13 @@ import pandas as pd
 from Honours.MD.config import MD_PATH, SINGLE_PLOT_WIDTH, SINGLE_PLOT_HEIGHT, SINGLE_PLOT_LEG_WIDTH, \
     SINGLE_PLOT_LEG_HEIGHT, FOUR_PLOTS_WIDTH, FOUR_PLOTS_HEIGHT, SIX_PLOTS_WIDTH, SIX_PLOTS_HEIGHT
 
-sns.set(context='paper', font_scale=1.5)
+sns.set(context='talk', font_scale=0.8)
 CURR_DIR = os.getcwd()
 
 
 if __name__ == "__main__":
 
-    sort_dict, dist_thresh, inhibitor, system_type, num_subplots = False, 10, 1, "noncov_H", 6
+    sort_dict, dist_thresh, inhibitor, system_type, num_subplots = False, 10, 3, "noncov_H", 6
 
     for i in [1, 2]:
 
@@ -99,7 +99,8 @@ if __name__ == "__main__":
         # num_row, subplot_index = int(num_subplots / 2), 0
         # fig, axes = plt.subplots(nrows=num_row, ncols=2, sharex=True, sharey=True, figsize=(PLOTS_WIDTH, PLOTS_HEIGHT))
         fig = plt.figure()
-        fig.subplots_adjust(top=0.98, bottom=0.12, left=0.09, right=0.97, wspace=0.15, hspace=0.15)
+        # fig.subplots_adjust(top=0.98, bottom=0.12, left=0.09, right=0.97, wspace=0.15, hspace=0.15)
+        fig.subplots_adjust(top=0.97, bottom=0.15, left=0.1, right=0.96, wspace=0.15, hspace=0.15)
         # fig.suptitle(r"Distance of Charged Residues of Interest from {0} H".format(target_H), horizontalalignment='center',
         #              fontsize=14, weight='bold')
         # fig.text(0.5, 0.02, "Time (ns)", va='center', ha='center')
