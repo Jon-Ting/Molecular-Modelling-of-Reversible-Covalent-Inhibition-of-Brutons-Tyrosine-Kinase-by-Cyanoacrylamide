@@ -12,18 +12,9 @@ charge_list_A = ["QTAIM", "Omega"]
 charge_list_B = ["Mulliken", "NBO", "MK", "Hirshfeld", "CM5", "ChelpG"]
 DI_list = ["Thiolate", "Inhibitor", "Activation", "Interaction"]
 
-benchmarking_data = {"Measure": ["MAD", "MAD", "MAD", "MAD", "MAD", "MAD", "MAD", "MAD", "MAD", "MAD",
-                                 "RMSD", "RMSD", "RMSD", "RMSD", "RMSD", "RMSD", "RMSD", "RMSD", "RMSD", "RMSD",
-                                 "Corrected MAD", "Corrected MAD", "Corrected MAD", "Corrected MAD", "Corrected MAD", "Corrected MAD", "Corrected MAD", "Corrected MAD", "Corrected MAD", "Corrected MAD",
-                                 "Corrected RMSD", "Corrected RMSD", "Corrected RMSD", "Corrected RMSD", "Corrected RMSD", "Corrected RMSD", "Corrected RMSD", "Corrected RMSD", "Corrected RMSD", "Corrected RMSD"],
-                     "Method": ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J",
-                                "A", "B", "C", "D", "E", "F", "G", "H", "I", "J",
-                                "A", "B", "C", "D", "E", "F", "G", "H", "I", "J",
-                                "A", "B", "C", "D", "E", "F", "G", "H", "I", "J"],
-                     "Error (kcal/mol)": [4.0, 1.4, 0.8, 2.3, 3.0, 1.9, 1.7, 1.3, 0.7, 0.7,
-                               4.1, 1.4, 1.1, 2.4, 3.3, 2.0, 1.7, 1.2, 1.1, 1.0,
-                               4.5, 1.5, 0.5, 2.6, 3.6, 2.1, 1.7, 1.0, 0.3, 0.4,
-                               4.5, 1.5, 0.6, 2.6, 3.6, 2.1, 1.8, 1.0, 0.4, 0.5]}
+benchmarking_data = {"Measure": ["RMSD", "RMSD", "RMSD", "RMSD", "RMSD", "RMSD", "RMSD", "RMSD", "RMSD", "RMSD"],
+                     "Method": ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"],
+                     "Error (kcal/mol)": [0.6, 1.0, 4.5, 2.1, 2.6, 1.8, 3.6, 0.5, 1.5, 0.4]}
 
 barrier_data = {"Mechanism": ["Base-Catalysed Proton Abstraction", "Base-Catalysed Proton Abstraction", "Base-Catalysed Proton Abstraction", "Base-Catalysed Proton Abstraction", "Base-Catalysed Proton Abstraction",
                               "4-Membered Intramolecular Proton Transfer", "4-Membered Intramolecular Proton Transfer", "4-Membered Intramolecular Proton Transfer", "4-Membered Intramolecular Proton Transfer", "4-Membered Intramolecular Proton Transfer",
@@ -167,11 +158,14 @@ combination_dict = {
                 "M": 0.8082,
                 "C": 5.3355,
                 "R2": 0.9760,
-                "X-AXIS": -1.0,
-                "Y-AXIS": 0.7,
+                "X-AXIS": -0.5,
+                "Y-AXIS": 0.3,
+                # "X-AXIS": -1.0,
+                # "Y-AXIS": 0.7,
                 "LEG": "best",
                 "ALIGN": "left",
-                "FONTSIZE": "x-small",
+                "FONTSIZE": "medium",
+                # "FONTSIZE": "x-small",
                 "X-NAME": "Inhibitor Distortion Energy (kcal/mol)"
             },
             "Activation": {

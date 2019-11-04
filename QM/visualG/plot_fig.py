@@ -14,7 +14,7 @@ from QM.run_gaussian.settings import DATA_PATH
 from QM.visualG.plot_config import combination_dict, charge_list, charge_list_A, charge_list_B, DI_list, \
     benchmarking_data, barrier_data
 
-sns.set(context='paper', font_scale=1.5)
+sns.set(context='talk', font_scale=0.9)
 # sns.despine()  # Remove "chartjunk"
 
 SINGLE_PLOT_WIDTH, SINGLE_PLOT_HEIGHT = 6, 4
@@ -22,7 +22,7 @@ TWO_PLOT_WIDTH, TWO_PLOT_HEIGHT = 9, 3.5
 FOUR_PLOTS_WIDTH, FOUR_PLOTS_HEIGHT = 8, 6
 SIX_PLOTS_WIDTH, SIX_PLOTS_HEIGHT = 8, 10
 EIGHT_PLOTS_WIDTH, EIGHT_PLOTS_HEIGHT = 10, 14
-BAR_PLOTS_WIDTH, BAR_PLOTS_HEIGHT = 10, 5
+BAR_PLOTS_WIDTH, BAR_PLOTS_HEIGHT = 8, 5
 
 
 def lin_reg(m, c, r2, xlimit, leg_loc, font_size="x-small"):
@@ -40,15 +40,20 @@ if __name__ == "__main__":
         # Statistical Measures
         df = pd.DataFrame(benchmarking_data)
         fig = plt.figure(figsize=(BAR_PLOTS_WIDTH, BAR_PLOTS_HEIGHT))
-        fig.subplots_adjust(top=0.98, bottom=0.12, left=0.08, right=0.98)
-        ax = sns.barplot(x="Method", y="Error (kcal/mol)", data=df, hue="Measure", palette="deep")
+        fig.subplots_adjust(top=0.95, bottom=0.15, left=0.1, right=0.98)
+        data = df.groupby("Error (kcal/mol)").size()
+        pal = sns.dark_palette("purple", len(data), reverse=True)
+        rank = data.argsort().argsort()
+        ax = sns.barplot(x="Method", y="Error (kcal/mol)", data=df, palette=np.array(pal[::-1])[rank], alpha=0.95)
         for p in ax.patches:
             ax.annotate(format(p.get_height(), ".1f"), (p.get_x()+p.get_width()/2., p.get_height()), ha="center",
-                        va="center", xytext=(0, 4), textcoords="offset pixels", fontsize=9)
-        leg = ax.legend(); leg.set_title("")
-        plt.legend(loc='upper right'); plt.ylim(None, 5.0); plt.xlim(None, None)
+                        va="center", xytext=(0, 8), textcoords="offset pixels", fontsize=16)
+        # leg = ax.legend(); leg.set_title("")
+        # plt.legend(loc='upper right'); plt.ylim(None, 5.0); plt.xlim(None, None)
+        ax.set(ylabel="Root-Mean-Square Error (kcal/mol)")
+        plt.ylim(None, 5)
         plt.savefig("Benchmarking Statistical Measures")
-        # plt.show()
+        plt.show()
 
         # Elimination Barriers
         df = pd.DataFrame(barrier_data)
@@ -61,7 +66,7 @@ if __name__ == "__main__":
         leg = ax.legend(); leg.set_title("")
         plt.legend(loc='upper left'); plt.ylim(None, None); plt.xlim(None, None)
         plt.savefig("Elimination Barrier for Different Mechanisms")
-        plt.show()
+        # plt.show()
 
     elif analysis_type == "Regression":
         combination = "CombinationI"
@@ -70,6 +75,23 @@ if __name__ == "__main__":
         print(df)
         prop_dict = combination_dict[combination[-1]]
 
+        # Inhibitor Distortion Energy
+        chosen_dict = prop_dict["DI"]["Inhibitor"]
+        m, c, r2, x_axis, y_axis, leg, fontsize = chosen_dict["M"], chosen_dict["C"], chosen_dict["R2"], chosen_dict[
+            "X-AXIS"], chosen_dict["Y-AXIS"], chosen_dict["LEG"], chosen_dict["FONTSIZE"]
+        fig = plt.figure(figsize=(SINGLE_PLOT_WIDTH, SINGLE_PLOT_HEIGHT))
+        fig.subplots_adjust(top=0.99, bottom=0.05, left=0.02, right=0.99)
+        ax = sns.scatterplot(x="Inhibitor Distortion Energy (kcal/mol)", y="Addition Barrier (kcal/mol)", data=df, hue="Inhibitor", legend=False, s=100)
+        ax.set(xlabel=r"Inhibitor Distortion Energy (kcal/mol)")
+        ax.set(ylabel=u"$\Delta G^\u2021$ (kcal/mol)")
+        for line in range(1, df.shape[0] + 1):
+            ax.text(df["Inhibitor Distortion Energy (kcal/mol)"][line] + x_axis, df["Addition Barrier (kcal/mol)"][line] + y_axis,
+                    df["Inhibitor"][line], horizontalalignment='center', size='small', color='black')
+        lin_reg(m, c, r2, plt.xlim(), leg, fontsize)
+        plt.ylim(None, None); plt.xlim(None, None)
+        plt.tight_layout()
+        plt.savefig(r"{0}/Inhibitor Distortion Energy".format(combination))
+
         # TS S-C Distance
         chosen_dict = prop_dict["SC"]
         m, c, r2, x_axis, y_axis, leg, fontsize = chosen_dict["M"], chosen_dict["C"], chosen_dict["R2"], chosen_dict[
@@ -77,7 +99,7 @@ if __name__ == "__main__":
         fig = plt.figure(figsize=(SINGLE_PLOT_WIDTH, SINGLE_PLOT_HEIGHT))
         fig.subplots_adjust(top=0.99, bottom=0.05, left=0.05, right=0.99)
         ax = sns.scatterplot(x="TS S-C Distance (A)", y="Addition Barrier (kcal/mol)", data=df, hue="Inhibitor", legend=False, s=100)
-        ax.set(xlabel=r"TS S-C$\beta$ Distance ($\AA$)")
+        ax.set(xlabel=r"Transition State S-C$\beta$ Distance ($\AA$)")
         ax.set(ylabel=u"$\Delta G^\u2021$ (kcal/mol)")
         for line in range(1, df.shape[0] + 1):
             ax.text(df["TS S-C Distance (A)"][line] + x_axis, df["Addition Barrier (kcal/mol)"][line] + y_axis,
@@ -104,6 +126,7 @@ if __name__ == "__main__":
         plt.savefig("{0}/Inhibitor LUMO Energy".format(combination))
         # plt.show()
 
+        raise
         # Beta-Carbon Charges
         fig = plt.figure(figsize=(EIGHT_PLOTS_WIDTH, EIGHT_PLOTS_HEIGHT))
         fig.subplots_adjust(top=0.9, bottom=0.1, left=0.1, right=0.95, wspace=0.3, hspace=0.45)
