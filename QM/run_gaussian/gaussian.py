@@ -18,6 +18,8 @@ METHOD, BASIS_SET, CALC_TYPE, FREQ, SCRF = 'M062X', '6-31+G(d)', ' opt', ' freq=
 
 
 def gen_from_dir(input_dir, run_calc_type, cluster=CLUSTER, combination=None, solvent='water'):
+    """Generate Gaussian input job files and submission files with specified calculation type, solvent for molecules in
+     given directories"""
     assert run_calc_type in keyword_dict.keys(), 'Calculation type not known!'
     groups = [f for f in os.listdir(input_dir) if isdir('{0}/{1}'.format(input_dir, f))]  # and 'Reactant' not in f
     for i, group in enumerate(groups):  # Potentially R, TSS, P
@@ -113,7 +115,8 @@ def write_job_script(title, dirc, cluster=CLUSTER, ncpus=NCPUS, software=SOFTWAR
             raise Exception('Cluster not recognized!')
 
 
-def SCS_corr(line_list):  # Spin-component scaled correction (to MP2 methods only)
+def SCS_corr(line_list):
+    """Apply spin-component scaled correction (to MP2 methods only)"""
     param_start_line, E_SCF, E_SCS_MP2 = "Spin components of T(2) and E(2)", None, None
     for i, line in enumerate(line_list):
         if 'HF' in line or '\\MP2' in line:
@@ -125,7 +128,7 @@ def SCS_corr(line_list):  # Spin-component scaled correction (to MP2 methods onl
                 E_SCF = E_SCF.split('=')[-1]
             try:
                 E_SCF = E_SCF.replace(' ', '')
-                E_SCF = float(E_SCF);
+                E_SCF = float(E_SCF)
             except ValueError:
                 print("E_SCF not number!")
                 continue

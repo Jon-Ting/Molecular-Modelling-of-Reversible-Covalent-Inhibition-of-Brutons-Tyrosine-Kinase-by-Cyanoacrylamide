@@ -13,6 +13,7 @@ from QM.run_gaussian.settings import DATA_PATH
 
 
 def change_names(dir_path, new_str, old_str=None):
+    """Modify the names of directories/files by replacing specified old string with new string"""
     file_list = [f for f in os.listdir(dir_path)]
     for j, title in enumerate(file_list):
         file_path = '{0}/{1}'.format(dir_path, title)
@@ -23,6 +24,7 @@ def change_names(dir_path, new_str, old_str=None):
 
 
 def make_dir_for_files(dir_path):
+    """Generate new directories with the same name as the existing file"""
     file_list = [f for f in os.listdir(dir_path) if not isdir('{0}/{1}'.format(dir_path, f)) and '.xyz' in f]
     for i, file in enumerate(file_list):
         new_dir_path = '{0}/{1}'.format(dir_path, rid_ext(file))
@@ -30,6 +32,7 @@ def make_dir_for_files(dir_path):
 
 
 def group_files(dir_path):
+    """Group files with similar names (with extensions removed) into same directories"""
     group_list = [g for g in os.listdir(dir_path) if isdir('{0}/{1}'.format(dir_path, g))]
     if len(group_list) == 0:
         make_dir_for_files(dir_path)
@@ -44,6 +47,7 @@ def group_files(dir_path):
 
 
 def rid_ext(file_name):
+    """Remove extension of a file name"""
     if '.' in file_name:
         split_names = file_name.split('.')
         new_file_name = ''.join(split_names[:-1])
@@ -53,6 +57,7 @@ def rid_ext(file_name):
 
 
 def split_file(file_path, break_str, ext):
+    """Splits a file (designed for .mol2) containing multiple entries"""
     break_index_list, prev_index = [], None
     with open(file_path, 'r') as f:
         line_list = f.readlines()
