@@ -4,6 +4,8 @@ Written by Jonathan Yik Chang Ting (Student ID: 44254124) for UQ BAdSc(Hons) Hon
 Project Title: Molecular Modelling of Reversible Covalent Inhibition of Bruton’s Tyrosine Kinase by Cyanoacrylamides
 Free to be distributed, edited and utilized for purposes beneficial to the world. :)
 Though recognition of my effort is appreciated! XD
+
+Scroll down to the bottom to modify the variables!
 """
 
 import os
