@@ -1,0 +1,8 @@
+- config.py contains some variables that are used repetitively for almost all files.
+- base_id.py plots the distances between potential base species and the targeted protons.
+- bb_rmsd.py plots the RMSD of BTK backbones over time.
+- hbond_analysis.py plots the distribution of the number of hydrogen bonds between BTK backbones over time.
+- lig_dihedral.py plots the distribution of the critical C=C-C=O dihedral angle near BTK active site over time.
+- SC_bond_dist.py plots the distances between the reacting S and C atoms over time.
+- sum.py sums up the charges to aid in the parameterisation of non-standard amino acids.
+- prep_mtb.py was written during an attempt to map the unbound ligand to covalently bound ligand. Was not utilised in the end.

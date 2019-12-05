@@ -1,7 +1,9 @@
-# Python script for calculations regarding Eyring equation (dGbarr, k, t_half, RT)
-# Written by Jonathan Yik Chang Ting (Student ID: 44254124) for UQ BAdSc(Hons) Honours Project 2019.
-# Project Title: Molecular Modelling of Reversible Covalent Inhibition of Bruton’s Tyrosine Kinase by Cyanoacrylamides
-# Free to be distributed, edited and utilized for purposes beneficial to the world. :)
+'''
+Python script for interconversions between kinetics and thermodynamic quantities involved in my project (dGbarr, k, t_half, RT)
+Written by Jonathan Yik Chang Ting (Student ID: 44254124) for UQ BAdSc(Hons) Honours Project 2019.
+Project Title: Molecular Modelling of Reversible Covalent Inhibition of Bruton’s Tyrosine Kinase by Cyanoacrylamides
+Free to be distributed, edited and utilized for purposes beneficial to the world. :)
+'''
 
 from math import log, exp
 

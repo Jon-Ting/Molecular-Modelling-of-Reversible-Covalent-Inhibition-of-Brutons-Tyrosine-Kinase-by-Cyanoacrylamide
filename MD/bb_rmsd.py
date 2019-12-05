@@ -1,5 +1,5 @@
 '''
-Python script for MD trajectory data analysis.
+Python script for MD trajectory data analysis. Aims to check the stability of the simulations by looking at the protein backbone RMSD from the starting conformation.
 Written by Jonathan Yik Chang Ting (Student ID: 44254124) for UQ BAdSc(Hons) Honours Project 2019.
 Project Title: Molecular Modelling of Reversible Covalent Inhibition of Bruton's Tyrosine Kinase by Cyanoacrylamides
 Free to be distributed, edited and utilized for purposes beneficial to the world. :)
