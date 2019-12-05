@@ -17,9 +17,9 @@ is_sh_file () {
         dirpath=$(pwd)
         abspath="$dirpath/$1"
         dos2unix $abspath
-        cat $abspath > "$dirpath/g_$1"
         echo "Submitting"
-        qsub -A UQ-SCI-SCMB $dirpath/g_$1
+        qsub -A UQ-SCI-SCMB $dirpath/$1  # If RCC clusters
+        # qsub $dirpath/$1  # Otherwise
     else
         echo "NOT $FILE_NAME, skip" 
     fi
