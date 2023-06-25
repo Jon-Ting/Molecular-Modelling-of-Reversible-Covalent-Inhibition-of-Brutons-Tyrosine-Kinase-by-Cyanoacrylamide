@@ -1,5 +1,5 @@
 """
-Python script to store the configuration for plotting functions in plot_fig.py.
+Python script to store the configuration for plotting functions in plotFigs.py.
 Written by Jonathan Yik Chang Ting (Student ID: 44254124) for UQ BAdSc(Hons) Honours Project 2019.
 Project Title: Molecular Modelling of Reversible Covalent Inhibition of Bruton’s Tyrosine Kinase by Cyanoacrylamides
 Free to be distributed, edited and utilized for purposes beneficial to the world. :)

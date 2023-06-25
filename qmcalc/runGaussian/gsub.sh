@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Script to make job submission to PBS Pro Scheduler more convenient.
-# Loop through all directories and submit all files with 'gsub' in the name.
+# Loop through all directories and submit all files with 'gsub.sh' in the name.
 
 FILE_NAME=*.sh
 

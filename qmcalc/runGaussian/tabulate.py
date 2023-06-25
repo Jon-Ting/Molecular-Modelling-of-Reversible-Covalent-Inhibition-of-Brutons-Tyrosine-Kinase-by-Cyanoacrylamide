@@ -10,7 +10,7 @@ import os
 import pandas as pd
 import re
 from os.path import isdir
-from QM.run_gaussian.settings import DATA_PATH
+from QM.runGaussian.settings import DATA_PATH
 
 
 def sort_human(list):
@@ -59,49 +59,37 @@ def find_val(line_list, target_str):
     return val
 
 
-if __name__ == "__main__":
-    class_type = "Enol"
-    input_dir = '{0}/QM/Conformational_Search/Products/{1}'.format(DATA_PATH, class_type)
-    groups = [f for f in os.listdir(input_dir) if isdir('{0}/{1}'.format(input_dir, f)) and 'exclude' not in f]  # and 'Reactant' not in f
-    print("\n# Tabulating values of interest from Gaussian .out files to an Excel sheet...")
-    print("\n# Input directory:\n", input_dir, "\n\n# Groups:\n", groups, "\n")
+def write_Excel(dir_path):
+    """Write a new Excel file tabulating the quantities of interest"""
     method_list, title_list, molecule_list, conformer_list, NImag_list, Z_list, E_list, H_list, G_list, MP2_list = [], [], [], [], [], [], [], [], [], []
     var_fill_list = [method_list, NImag_list, Z_list, E_list, H_list, G_list]
-    # var_fill_list = [method_list, MP2_list]
     keyword_list = [['%chk'], ['NI', 'Im'], ['zero-point Energies'], ['HF'], ['thermal Enthalpies'], ['thermal Free Energies']]
-    # keyword_list = [['%chk'], ['MP2']]
-    for i, group in enumerate(groups):  # Potentially R, TSS, P
-        group_dir = '{0}/{1}'.format(input_dir, group)
-        conformers = [g for g in os.listdir(group_dir) if isdir('{0}/{1}'.format(group_dir, g))]
-        for j, title in enumerate(conformers):
-            conformer_dir = '{0}/{1}'.format(group_dir, title)
-            print("Conformer:", title)
-            try:
-                with open('{0}/{1}.out'.format(conformer_dir, title), 'r') as f:
-                    line_list = f.readlines()
-                    line_list.reverse()
-                    for i, var_list in enumerate(var_fill_list):
-                        val = find_val(line_list, keyword_list[i])
-                        var_list.append(val)
-                    title_list.append(title)
-                    molecule_list.append(replaceMultiple(title.split('c')[0].replace('_', ''), ['TR', 'TSS', 'TP'], ''))
-                    conformer_list.append('c' + title.split('c')[-1])
-            except FileNotFoundError:
-                print("{0}/{1}.out not found!".format(conformer_dir, title))
-                continue
+    for j, title in enumerate(groups):
+        conformer_dir = '{0}/{1}'.format(input_dir, title)
+        print("Conformer:", title)
+        try:
+            with open('{0}/{1}.out'.format(conformer_dir, title), 'r') as f:
+                line_list = f.readlines()
+                line_list.reverse()
+                for i, var_list in enumerate(var_fill_list):
+                    val = find_val(line_list, keyword_list[i])
+                    var_list.append(val)
+                title_list.append(title)
+                molecule_list.append(replace_multiple(title.split('c')[0].replace('_', ''), ['TR', 'TSS', 'TP'], ''))
+                conformer_list.append('c' + title.split('c')[-1])
+        except FileNotFoundError:
+            print("{0}/{1}.out not found!".format(conformer_dir, title))
+            continue
     data = {'Method': method_list, 'Title': title_list, 'Molecule': molecule_list, 'Conformer': conformer_list, 'NImag': NImag_list,
            'Z (Hartree)': Z_list, 'E (Hartree)': E_list, 'H (Hartree)': H_list, 'G (Hartree)': G_list}
-    # data = {'Method': method_list, 'Title': title_list, 'Molecule': molecule_list, 'Conformer': conformer_list,
-    #        'MP2': MP2_list}
     df = pd.DataFrame(data, columns=['Method', 'Title', 'Molecule', 'Conformer', 'NImag', 'Z (Hartree)', 'E (Hartree)', 'H (Hartree)', 'G (Hartree)'])
-    # df = pd.DataFrame(data, columns=['Method', 'Title', 'Molecule', 'Conformer', 'MP2'])
     title_list = sort_human(title_list)
     sorted_df = df.set_index('Title').reindex(title_list).reset_index()
     print("# Sorted data frame:\n", sorted_df)
 
     print("# Writing to Excel sheet...")
     # sorted_df.to_excel('{0}/Energies.xlsx'.format(input_dir), sheet_name='Sheet1')
-    writer = pd.ExcelWriter('{0}/Energies_{1}.xlsx'.format(input_dir, class_type), engine='xlsxwriter')
+    writer = pd.ExcelWriter('{0}/Energies.xlsx'.format(input_dir), engine='xlsxwriter')
     sorted_df.to_excel(writer, startrow=1, sheet_name='Sheet1', index=False)
     workbook = writer.book
     worksheet = writer.sheets['Sheet1']
@@ -110,4 +98,16 @@ if __name__ == "__main__":
         column_len = max(column_len, len(col)) + 2
         worksheet.set_column(i, i, column_len)
     writer.save()
+    return workbook
+
+
+if __name__ == "__main__":
+
+    # Change this!
+    input_dir = "/User/kahochow/Desktop/Li_mechanism/Li_work/Reactant"
+
+    groups = [f for f in os.listdir(input_dir) if isdir('{0}/{1}'.format(input_dir, f))]
+    print("\n# Tabulating values of interest from Gaussian .out files to an Excel sheet...")
+    print("\n# Input directory:\n", input_dir, "\n\n# Groups:\n", groups, "\n")
+    workbook = write_Excel(input_dir)
 

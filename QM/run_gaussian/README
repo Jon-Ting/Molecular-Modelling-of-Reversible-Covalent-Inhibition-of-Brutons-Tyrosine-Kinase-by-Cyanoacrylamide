@@ -1,9 +1,0 @@
-This directory contains several Python files and Bash file that I have written during my Honours project for the automation of certain tasks.
-
-Some descriptions on the files:
-settings.py - Contains variables for different type of Gaussian jobs that is used by gaussian.py.
-admin.py - Group files with the same names (before extension, e.g. abc.inp is the same as abc.xyz) into individual directories.
-gaussian.py - Batch generation of Gaussian input files and job submission files on HPCs with PBS Scheduler.
-tabulate.py - Batch tabulation of interested values from Gaussian output files into an Excel file.
-
-More detailed description could be found in ../../README.
