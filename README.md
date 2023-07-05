@@ -2,14 +2,15 @@
 
 ## Project Details
 * Author: Jonathan Yik Chang Ting
-* Supervisors: Associate Professor Elizabeth Krenske, Professor Alan Mark
+* Student ID: 44254124
+* Supervisors: Associate Professor Elizabeth Krenske, Professor Alan Mark, Dr Martin Stroet
 * Institution: University of Queensland
 * Organisation: School of Chemistry and Molecular Biosciences
 * Programme: Bachelor of Advanced Science (Honours)
 * Course: Honours in Chemistry (CHEM6511)
 * Year: 2019
 
-## Phases 
+## Project Phases 
 
 ### Quantum Mechanical Calculations
 * QM directory contains the Python files written for various purposes related to the QM calculation phase of the project:
